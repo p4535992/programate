@@ -1,0 +1,22 @@
+/* 
+    Document   : style
+    Created on : 3/09/2013, 08:42:45 PM
+    Author     : Andres Herrera
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+header nav {
+float: left;
+margin-top: 40px;
+}
+
+header nav li {
+display: inline;
+margin-left: 15px;
+}
+
