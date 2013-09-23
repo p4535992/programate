@@ -1,6 +1,6 @@
 <?php
 
-function myErrorHandler($errno, $errstr, $errfile, $errline)
+function manejarErrores($errno, $errstr, $errfile, $errline)
 {
 	switch ($errno) {
 		case E_USER_ERROR:

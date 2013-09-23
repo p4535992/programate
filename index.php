@@ -7,9 +7,13 @@ require_once 'Aplicacion.php';
 
 class FrontController {
 
+    /**
+     * 
+     */
     public static function manejadorPeticiones() {
-        $app = Aplication::getInstance();
-        
+        $this->manejadorErrores();
+        $this->manejadorExcepciones();
+        $app = Aplication::getInstance(); 
         
         
         $modulo =  (!empty($_REQUEST['modulo'])) ? $_REQUEST['modulo'] : 'index';
@@ -27,11 +31,24 @@ class FrontController {
             
         }
     }
-//TODO
-//set_error_handler('myErrorHandler');
-//error_reporting(0);
-#---------------------------------
-//se divide la peticion de la URL
+    
+    /**
+     * 
+     */
+    public static function manejadorErrores(){
+        set_error_handler('manejarErrores');
+    }
+    
+    /**
+     * 
+     */
+    public static function manejadorExcepciones(){
+     
+        
+    }
+    
+    
+
 }
 
 FrontController::manejadorPeticiones();
