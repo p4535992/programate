@@ -21,9 +21,9 @@ class Controller {
     
     function cargarVista($vista='index', $parametros=null){
         //lo Primero que se hara es cargar el template.
-        $path = './templates/default/template.phtml';
-        if (file_exists($path)) {         
-           
+        
+        $path = TEMPLATEURI.TEMPLATE.'/template.phtml';
+        if (file_exists($path)) {  
             require_once $path;
             return true;
         } else {
