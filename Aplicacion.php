@@ -1,4 +1,5 @@
 <?php
+include_once 'handlers/manejador.php';
 class  Aplication{
      private static $instancia;
     function Aplicacion($version = "") {
@@ -35,6 +36,21 @@ class  Aplication{
    
     //Si ocurre algun error devuelve el error con el tipo
     function error($mensaje = "Ocurrio un error inesperado!", $titulo = "Error del sistema") {
+        
+    }
+    
+        /**
+     * 
+     */
+    public static function manejadorErrores(){
+        set_error_handler('manejarErrores');
+    }
+    
+    /**
+     * 
+     */
+    public static function manejadorExcepciones(){
+     
         
     }
     

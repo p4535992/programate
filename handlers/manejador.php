@@ -12,11 +12,11 @@ function manejarErrores($errno, $errstr, $errfile, $errline)
 			break;
 
 		case E_USER_WARNING:
-			echo "<b>Warning</b> [$errno] $errstr<br />\n";
+			echo "<b>Alerta</b> [$errno] $errstr<br />\n";
 			break;
 
 		case E_USER_NOTICE:
-			echo "<b>Notice</b> [$errno] $errstr<br />\n";
+			echo "<b>Noticia</b> [$errno] $errstr<br />\n";
 			break;
 
 		case E_ERROR:
