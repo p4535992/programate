@@ -6,6 +6,9 @@
   define("URL_REDIRECT", "http://anfho.p.ht/index.php?modulo=servicios&controlador=index&metodo=recibirInformacion");
   define("URL_PAGE","http://anfho.p.ht/");
   define("TEMPLATE", "default");
-  define("TEMPLATEURI", "./templates/")
-  
+  define("TEMPLATEURI", "./templates/");
+  define("DBNAME","Programate");
+  define("DBSERVER","localhost");
+  define("DBPORT","3306");
+  define("DBPASS","123456");
 ?>

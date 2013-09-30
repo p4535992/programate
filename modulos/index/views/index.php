@@ -1,17 +1,27 @@
 <?php
-echo 'contendio del modulo index.';
-if (!empty($_POST['json'])) {
-    echo $_POST['json'];
-} else {
-    ?>
 
+class IndexViewController {
 
-    <form method="post" action="." id="formularioface">
-        <input type="submit" id="boton" value="Dame Click"/> 
-        <input type="hidden" value="index" name="controlador"/>
-        <input type="hidden" value="servicios" name="modulo"/>
-        <input type="hidden" value="index" name="metodo"/>
+    private $parametros;
 
-    </form>
-        <?
-}?>
+    public function getParametros() {
+        return $this->parametros;
+    }
+
+    public function setParametros($parametros) {
+        $this->parametros = $parametros;
+    }
+
+    public function getHTML() {
+        
+       return 'modulos/index/views/layout/default.phtml';
+    }
+    
+    public function getCSS(){
+        
+    }
+    
+    
+
+}
+?>

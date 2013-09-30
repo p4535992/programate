@@ -23,8 +23,9 @@ class HomeController extends Controller {
      */
     public function index($parametros = NULL) {
         $pathtoVista = "./modulos/$this->nombre/views/index.php";
-        parent::asignar(array('contenido' => $pathtoVista, 'params' => $parametros));
-        parent::cargarVista('index', $parametros);
+        $parametros = array('mensaje' => "hola mundo");
+        $view = parent::cargarVista($pathtoVista, 'index', $parametros);
+        parent::renderizarPagina($view->getHTML(), $view->getParametros());
     }
 
 }
