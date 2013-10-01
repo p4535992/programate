@@ -34,7 +34,7 @@ class Loader implements LoaderInterface {
     }
 
     public function cargarMenu() {
-        
+        $this->menuHTML = "./modulos/topmenu/views/topmenu.phtml";
     }
 
     public function rederizarPagina() {

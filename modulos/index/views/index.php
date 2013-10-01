@@ -13,7 +13,7 @@ class IndexViewController {
     }
 
     public function getHTML() {
-        
+       
        return 'modulos/index/views/layout/default.phtml';
     }
     

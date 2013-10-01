@@ -15,7 +15,7 @@ class ErrorController extends Controller {
     private $nombre = 'errores';
 
     /**
-     * constructor de la clase.
+     * Constructor de la clase.
      */
     public function __construct() {
         $this->nombre = 'errores';
@@ -41,8 +41,43 @@ class ErrorController extends Controller {
      * @param type $codError, Int Codigo del error HTTP
      * @param type $data, Arreglo con la informacion a ser registrada en el Log.
      */
-    public function registrarError($codError, $data) {
-        error_log($data, 3, './logs/errorlogs.log');
+    public function registrarError($codError, $mensaje) {
+        error_log($this->obtenerRegistro($codError, $mensaje), 3, './logs/errorlogs.log');
+    }
+
+    public function obtenerRegistro($codError, $mensaje) {
+        $ip = $this->obtenerIPEntrante();
+        return "La IP: $ip Genero el error $codError $mensaje \n";
+    }
+
+    /**
+     * @return string, IP entrante
+     */
+    public function obtenerIPEntrante() {
+        $ipaddress = '';
+        try {
+            $ipaddress = '';
+            if (getenv('HTTP_CLIENT_IP'))
+                $ipaddress = getenv('HTTP_CLIENT_IP');
+            else if (getenv('HTTP_X_FORWARDED_FOR'))
+                $ipaddress = getenv ('HTTP_X_FORWARDED_FOR');
+            else if (getenv('HTTP_X_FORWARDED'))
+                $ipaddress = getenv('HTTP_X_FORWARDED');
+            else if (getenv('HTTP_FORWARDED_FOR'))
+                $ipaddress = getenv('HTTP_FORWARDED_FOR');
+            else if (getenv('HTTP_FORWARDED'))
+                $ipaddress = getenv('HTTP_FORWARDED');
+            else if (getenv('REMOTE_ADDR'))
+                $ipaddress = getenv('REMOTE_ADDR');
+            else
+                $ipaddress = 'UNKNOWN';
+
+            return $ipaddress;
+
+            return $ipaddress;
+        } catch (Exception $e) {
+            
+        }
     }
 
 }
