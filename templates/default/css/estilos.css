@@ -1,0 +1,146 @@
+*{
+    margin: 0;
+}
+
+header{
+    max-width: 820px;
+    text-align: center;
+    position: relative;
+    margin-top: 10px;
+    height: 120px
+}
+
+header img{
+    position: absolute; left: 360px;
+}
+
+body{
+    background-image: url(https://abs.twimg.com/images/themes/theme14/bg.gif);
+    color: white;
+    font-family: arial;
+    font-size: 16px;
+}
+
+#contenedor{
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+nav ul{
+    padding: 0;
+    background: rgba(0,0,0,.5);
+    font-size: 0;
+}
+
+nav ul li{
+    display: inline-block;
+    padding: 10px;
+    width: 14.28%;
+    font-size: 16px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    text-align: center;
+}
+
+nav ul li:hover{
+    background:rgba(0,0,0,.3);
+}
+
+nav ul li a{
+    color: white;
+    text-transform: uppercase;
+}
+
+#webs{
+    background-color: transparent;
+    background-image: url(../img/fondo.png);
+    background-repeat: repeat;
+    border : 2px solid black;
+}
+
+article{
+    color: black;
+    padding: 5px;
+    margin-top:30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border: 1px solid white;
+    display: inline-block;
+    max-width: 810px;
+    background: #ccc;
+    box-sizing: border-box;
+    -webkit-transition: .2s;
+    -moz-transition: .2s;
+    transition: .2s;
+}
+
+article:hover{
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.programa,.info{
+    float: left;
+}
+
+
+
+.programa{
+    margin-right: 20px;
+}
+
+.canal{
+    float: right;
+    background-color: background;
+    margin-left: 20px;
+}
+
+.info{
+    max-width: 62%;
+    margin-right: 5px; 
+    min-width: 62%;
+}
+
+.espFooter{
+    height: 25px;
+}
+
+footer{
+    text-align: center;
+}
+
+
+
+
+@media screen and (max-width: 800px) {
+    nav ul li{
+        width: 33.2%
+    }
+    
+    header img{
+        position: absolute; left: 10px;
+        width: 100px;
+    }
+    
+    #campo{
+        display: none
+    }
+    
+    #webs img{
+        width: 100px;
+        height: 100px;
+    }
+    
+    #webs img{
+        width: 100px;
+        height: 100px;
+        
+    }
+    
+    
+    
+    
+}

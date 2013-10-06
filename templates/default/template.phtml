@@ -1,21 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="utf-8"/>
-        <title> <?echo $this->parametros['titulo'];?> </title>
-        <meta name="viewport" content="width=device-width, minimumscale=
-              1.0, maximum-scale=1.0" />
-     
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>interfazProgramate</title>
+        <link rel="stylesheet" href="./templates/default/css/estilos.css">
     </head>
     <body>
-        <div id="wrapper">
-            <header>
-                <? require ( $this->menuHTML); ?>
-            </header>
-            <div id="contenido">
-                <? require ( $this->contenidoURL); ?>                
-            </div>
 
-        </div>
+        <section id="contenedor">
+            <!--Cabecera-->
+            <header>
+                    <img src="<?echo $this->rutaImagenes?>logo.png" width="130px">
+            </header>
+            
+
+
+            <!--contenido-->
+            <section id="webs">
+
+               <?php
+                require $this->menuHTML;
+                ?>
+
+                <?php
+                require $this->contenidoURL;
+                ?>
+                    
+            </section>
+
+            <footer>
+                <br>copyright&COPY Iteraxis.co 2013
+                <br>Todos los derechos reservados
+            </footer>
+        </section>
+
     </body>
 </html>

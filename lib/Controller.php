@@ -36,7 +36,7 @@ class Controller {
             $loader->rederizarPagina();
             // return true;
         } else {
-            //error 404
+            // error 404
             // return false;
         }
     }

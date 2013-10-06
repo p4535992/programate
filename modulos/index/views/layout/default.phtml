@@ -1,5 +1,35 @@
-  <div id="indexDiv">
-      <?php
-  echo $this->parametros['mensaje'];
-  ?>
-  </div>
+
+<?php
+$cant = $this->parametros['cant'];
+$HTML = "";
+for ($i = 1; $i <= $cant; $i++) {
+    $programa = $this->parametros['programa' . $i];
+    $HTML.= '<article> 
+        <div class="programa">
+        <img src="'.$this->rutaImagenes.'desafio.jpg" alt="Desafio Africa"
+             height="120" width="120"/>
+        </div>
+    
+     <div class="info">
+        <h1>';
+
+    $HTML.= $programa['titulo'] . '
+        </h1>
+        <p> '
+            . $programa['info'] . '
+        </p>
+     </div>
+        
+<div class="canal">
+        <img src="'.$this->rutaImagenes.'caracol-tv.jpg" alt="Caracol TV"
+             height="120" width="120"/>
+    </div>
+    </article>';
+    
+    
+}
+echo $HTML;
+?>
+
+<div class="espFooter">
+</div>

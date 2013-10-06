@@ -4,6 +4,7 @@ include_once 'handlers/manejador.php';
 include_once 'modulos/errores/controllers/ErrorController.php';
 
 class Aplication {
+    
     /**
      *
      * @var type Aplicacion, reservado para el patron de diseno Singleton
@@ -16,7 +17,6 @@ class Aplication {
         $this->version = $version;
     }
     /*
-     * 
      * Patron de diseño Singleton
      */
     public static function getInstance() {
@@ -26,12 +26,10 @@ class Aplication {
         return self::$instancia;
     }
 
-    /**
-     * 
+    /** 
      * Este metodo carga los controladores segun el nombre
      * y el modulo al que pertenesca.
-     */
-    
+     */    
     function cargarControlador($modulo, $controlador) {
         $controlador = ucfirst(strtolower($controlador));
         $modulo = strtolower($modulo);

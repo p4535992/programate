@@ -11,4 +11,5 @@
   define("DBSERVER","localhost");
   define("DBPORT","3306");
   define("DBPASS","123456");
+  define("ROVIAPITVLISTINGS", "jygte3dr2seduqumsdbhnamc");
 ?>

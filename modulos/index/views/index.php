@@ -12,9 +12,8 @@ class IndexViewController {
         $this->parametros = $parametros;
     }
 
-    public function getHTML() {
-       
-       return 'modulos/index/views/layout/default.phtml';
+    public function getHTML($vista = 'default') {       
+       return "modulos/index/views/layout/$vista.phtml";
     }
     
     public function getCSS(){
