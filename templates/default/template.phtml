@@ -2,35 +2,39 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>interfazProgramate</title>
-        <link rel="stylesheet" href="./templates/default/css/estilos.css">
+        <title>Programate</title>
+        <link rel="stylesheet" href="/templates/default/css/estilos.css">
+        <script>
+        </script>
     </head>
     <body>
-
+        
+       
         <section id="contenedor">
             <!--Cabecera-->
             <header>
-                    <img src="<?echo $this->rutaImagenes?>logo.png" width="130px">
+                <img src="<? echo $this->rutaImagenes ?>logo.png" width="130px">
             </header>
-            
+
 
 
             <!--contenido-->
             <section id="webs">
 
-               <?php
+                <?php
                 require $this->menuHTML;
                 ?>
 
                 <?php
                 require $this->contenidoURL;
                 ?>
-                    
+
             </section>
 
             <footer>
                 <br>copyright&COPY Iteraxis.co 2013
                 <br>Todos los derechos reservados
+
             </footer>
         </section>
 

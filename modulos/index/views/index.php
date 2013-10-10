@@ -1,6 +1,6 @@
 <?php
-
-class IndexViewController {
+include_once './lib/ViewController.php';
+class IndexViewController extends ViewController{
 
     private $parametros;
 

@@ -1,13 +1,22 @@
 <?php
-
+/**
+ * 
+ */
 class Controller {
-
+/**
+ * 
+ * @param type $array
+ */
     function asignar($array) {
         foreach ($array as $key => $value) {
             $_POST[$key] = $value;
         }
     }
-
+/**
+ * 
+ * @param type $modelo
+ * @return boolean
+ */
     function cargarModelo($modelo) {
         $modelo = ucfirst(strtolower($modelo));
         $modelo = './models/' . $modelo . 'Model.php';
@@ -18,7 +27,13 @@ class Controller {
             return false;
         }
     }
-
+/**
+ * 
+ * @param type $ruta
+ * @param type $vistaModulo
+ * @param type $parametros
+ * @return \clase
+ */
     function cargarVista($ruta, $vistaModulo, $parametros = null) {
         include $ruta;
         $clase = ucfirst(strtolower($vistaModulo)) . "ViewController";
@@ -26,7 +41,11 @@ class Controller {
         $view->setParametros($parametros);
         return $view;
     }
-
+/**
+ * 
+ * @param type $vista
+ * @param type $parametros
+ */
     function renderizarPagina($vista, $parametros) {
         $path = TEMPLATEURI . TEMPLATE . '/Loader.php';
         if (file_exists($path)) {

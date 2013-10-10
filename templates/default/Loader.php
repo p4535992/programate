@@ -8,7 +8,7 @@ class Loader implements LoaderInterface {
     private $loginHTML;
     private $menuHTML;
     private $parametros = array();
-    private $rutaImagenes = './templates/default/img/';
+    private $rutaImagenes = '/templates/default/img/';
 
     function __construct() {
         $this->cargarHeader();
