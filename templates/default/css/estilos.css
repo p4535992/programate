@@ -51,6 +51,7 @@ nav ul li:hover{
 nav ul li a{
     color: white;
     text-transform: uppercase;
+    text-decoration: none;
 }
 
 #webs{
