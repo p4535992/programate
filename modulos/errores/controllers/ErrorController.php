@@ -31,7 +31,7 @@ class ErrorController extends Controller {
     public function procesarError($msg, $tituloPagina, $codError = 0) {
         $pathtoVista = "./modulos/$this->nombre/views/index.php";
         $parametros = array('error' => $codError, 'titulo' => $tituloPagina, 'mensaje' => $msg);
-        parent::asignar(array('contenido' => $pathtoVista, 'params' => $parametros));
+     
         $view = parent::cargarVista($pathtoVista, 'index', $parametros);
         parent::renderizarPagina($view->getHTML(), $view->getParametros());
     }
@@ -74,7 +74,6 @@ class ErrorController extends Controller {
 
             return $ipaddress;
 
-            return $ipaddress;
         } catch (Exception $e) {
             
         }

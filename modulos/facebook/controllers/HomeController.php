@@ -14,38 +14,21 @@ class HomeController extends Controller {
         $this->nombre = $nombre;
     }
 
+    /**
+     * 
+     */
     function index() {
         //se deben obtener los parametros que me envia facebook.\
         //Si es exitoso se reciben los siguientes parametros.
-        
         //se debe confirmar la identidad basados en el codigo
         //y obtener un access token
-        
-       
-        
-        
-        if (($_REQUEST['access_token'])!= null) {
+
+        if (($_REQUEST['access_token']) != null) {
             $accessToken = $_REQUEST['access_token'];
             $expiracionSegundos = $_REQUEST['expires'];
 
             //se verifican que los parametros ingresados sean los de la persona que ingreso 
             //para ello obtenemos un token para nuestra aplicacion ;
-
-            $ch = curl_init("/oauth/access_token?client_id={app-id}    &client_secret={app-secret}    &grant_type=client_credentials");
-            $userAgent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)';
-            // add useragent 
-            curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            $apptoken = curl_exec($ch);
-
-            //se hace la verificacion correspondiente
-            $ch = curl_init("graph.facebook.com/debug_token?input_token=$accessToken&access_token=458867537554408");
-            // add useragent 
-            curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            // Execute 
-            $json = curl_exec($ch);
-            //se debe analizar el Json para verificar la certeza, en caso tal de ser correcto
             //se crea una sesion interna
             $pathtoVista = "./modulos/$this->nombre/views/Facebook.php";
             $view = parent::cargarVista($pathtoVista, 'Facebook', array("apptoken" => $apptoken, "json" => json_decode($json)));
@@ -56,9 +39,91 @@ class HomeController extends Controller {
             parent::renderizarPagina($view->getHTML('error'), $view->getParametros());
         }
     }
-    
-    
+
+    /**
+     * 
+     */
     function confirmarIdentidad() {
+        if (!empty($_GET['code'])) {
+            $redirectURL = "http://anfho93.sytes.net/facebook/home/confirmarIdentidad";
+            $url = "Location: https://graph.facebook.com/oauth/access_token?client_id=" . APPID . "&redirect_uri=" . $redirectURL . "&client_secret=" . APPSECRET . "&code=" . $_GET['code'];
+            $url = "https://graph.facebook.com/oauth/access_token?client_id=" . APPID . "&redirect_uri=" . $redirectURL . "&client_secret=" . APPSECRET . "&code=" . $_GET['code'];
+
+            $accessToken = file_get_contents($url);
+
+            @list($aT, $expiracion ) = explode("&", $accessToken, 2);
+            list($i, $valorToken ) = explode("=", $aT);
+            list($j, $expiracion ) = explode("=", $expiracion);
+
+            //Luego de tener el token y su tiempo de expiracion es necesario inspeccionarlos
+            //para ello es necesario obtener un APP token de la aplicacion
+            $url = "https://graph.facebook.com/oauth/access_token?client_id=" . APPID . "&client_secret=" . APPSECRET . "&grant_type=client_credentials";
+            $appToken = file_get_contents($url);
+            list($k, $appToken ) = explode("=", $appToken);
+
+            // $jsonarray = $this->inspeccionarToken($accessToken, $expiracion, $appToken);
+            if (true) {
+                //el token es valido.
+                $this->login($appToken, $accessToken, $expiracion);
+               
+            } else {
+                $pathtoVista = "./modulos/$this->nombre/views/Facebook.php";
+                $view = parent::cargarVista($pathtoVista, 'Facebook', array("json" => $jsonarray));
+                parent::renderizarPagina($view->getHTML('error'), $view->getParametros());
+            }
+        } else {
+            //nego la peticion
+            if ($_GET['error_reason'] != null) {
+                /* error_reason=user_denied
+                  &error=access_denied
+                  &error_description=The+user+denied+your+request. */
+                $app = Aplication::getInstance();
+                $msg = $_GET["error_reason"] . " " . $_GET["error"] . " " . $_GET['error_description'];
+                $app->error('000', $msg, "Cancelaste el facebook Login");
+            }
+        }
+    }
+
+    /**
+     * 
+     * @param type $appToken
+     * @param type $accessToken
+     * @param type $expiracion
+     */
+    function login($appToken, $accessToken, $expiracion) {
+
+
+        //agregamos una variables de sesion.
+        $userId = null;        
+        setcookie("programate", $accessToken, time() + $expiracion, "/", "anfho93.sytes.net");
+        setcookie('expiracion', $expiracion, time() + $expiracion,  "/", "anfho93.sytes.net");
+        header('location: /');
+    }
+
+    /**
+     * 
+     * @param type $accessToken
+     * @param type $expiracion
+     * @param type $apptoken
+     * @return type
+     */
+    function inspeccionarToken($accessToken, $expiracion, $apptoken) {
+
+        $url = "graph.facebook.com/debug_token?input_token=$accessToken&access_token=$apptoken";
+        $JSON = $this->ejecutarCURL($url);
+        $JSON = json_decode($JSON, true);
+        return $JSON;
+    }
+
+    /**
+     * 
+     */
+    function logOut() {
+        
+        if(!empty( $_COOKIE['expiracion']) && !empty( $_COOKIE['programate'])){
+            setcookie ("programate", "", time() - $_COOKIE['expiracion'], "/", "anfho93.sytes.net");
+            header('location: /');
+        }
         
     }
 

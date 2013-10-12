@@ -2,6 +2,10 @@
 
 function manejarErrores($errno, $errstr, $errfile, $errline)
 {
+    if (error_reporting() === 0)
+    {
+        return;
+    }
 	switch ($errno) {
 		case E_USER_ERROR:
 			echo "<b>ERROR</b> [$errno] $errstr<br />\n";
@@ -24,7 +28,7 @@ function manejarErrores($errno, $errstr, $errfile, $errline)
 			break;
 
 		default:
-			echo "Error desconocido, valor: [$errno] $errstr<br />\n";
+			echo "Error desconocido, valor: [$errno] $errstr $errfile $errline<br />\n";
 			break;
 	}
 	return true;

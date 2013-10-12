@@ -19,7 +19,8 @@ class FrontController {
 
      * Punto de entrada de la aplicacion
      */
-    public  function manejadorPeticiones() {
+    public function manejadorPeticiones() {
+       // session_start();
         $app = Aplication::getInstance();
         $app->manejadorErrores();
         $app->manejadorExcepciones();
@@ -34,7 +35,6 @@ class FrontController {
         /**
          * Verifica que el modulo exista.
          */
-      
         if ($app->verificarModulo($this->modulo)) {
             $controlador = $app->cargarControlador($this->modulo, $this->controlador);
             if ($controlador === null) {
@@ -42,7 +42,7 @@ class FrontController {
             } else {
 
                 if ($app->verificarMetodo($controlador, $this->metodo)) {
-                    $metodo =$this->metodo;
+                    $metodo = $this->metodo;
                     $controlador->$metodo();
                 } else {
                     $app->error(404, "No se encontro la accion Pedida, verifique los parametros", "Error de URL");
@@ -53,22 +53,27 @@ class FrontController {
         }
     }
 
-    protected   function parseUri() {
+    protected function parseUri() {
         $path = trim(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH), "/");
-        
+
         //$path = preg_replace('/[^a-zA-Z0-9]/', "", $path);
-       /* if (strpos($path, $this->basePath) === 0) {
-            $path = substr($path, strlen($this->basePath));
-        }*/
+        /* if (strpos($path, $this->basePath) === 0) {
+          $path = substr($path, strlen($this->basePath));
+          } */
+
+        try {
+            @list($module, $controller, $action) = explode("/", $path, 3);
+        } catch (Exception $e) {
+            $e->getMessage();
+        }
         
-        @list($module, $controller, $action) = explode("/", $path, 3);
-        if (isset($module)) {
+        if (isset($module) && $module != null) {
             $this->setModulo($module);
         }
-        if (isset($controller)) {
+        if (isset($controller) && $controller != null) {
             $this->setControlador($controller);
         }
-        if (isset($action)) {
+        if (isset($action) && $action != null) {
             $this->setMetodo($action);
         }
     }
@@ -106,6 +111,7 @@ class FrontController {
     }
 
 }
+
 $Frontcontrolador = new FrontController();
 $Frontcontrolador->manejadorPeticiones();
 ?>
