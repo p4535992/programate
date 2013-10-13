@@ -80,13 +80,15 @@ class Controller {
     }
 
     public function isLoggedIn() {
-        if ($_SESSION["autentificado"] != "SI") {
-            //si no existe, envio a la página de autentificacion 
-            //ademas salgo de este script 
-            return true;
-        }
-        else
-            return false;
+        if (isset($_SESSION["autenticado"])) {
+            if ($_SESSION["autenticado"] != true) {
+                //si no existe, envio a la página de autentificacion 
+                //ademas salgo de este script 
+                return true;
+            }
+            else
+                return false;
+        }else return false;
     }
 
 }
