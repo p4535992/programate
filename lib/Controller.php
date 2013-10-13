@@ -81,7 +81,7 @@ class Controller {
 
     public function isLoggedIn() {
         if (isset($_SESSION["autenticado"])) {
-            if ($_SESSION["autenticado"] != true) {
+            if ($_SESSION["autenticado"] == true) {
                 //si no existe, envio a la página de autentificacion 
                 //ademas salgo de este script 
                 return true;
