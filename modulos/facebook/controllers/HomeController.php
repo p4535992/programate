@@ -4,6 +4,10 @@ include_once './lib/Controller.php';
 
 class HomeController extends Controller {
 
+    /**
+     *
+     * @var type Nombre del controlador.
+     */
     private $nombre;
 
     /**
@@ -18,30 +22,13 @@ class HomeController extends Controller {
      * 
      */
     function index() {
-        //se deben obtener los parametros que me envia facebook.\
-        //Si es exitoso se reciben los siguientes parametros.
-        //se debe confirmar la identidad basados en el codigo
-        //y obtener un access token
-
-        if (($_REQUEST['access_token']) != null) {
-            $accessToken = $_REQUEST['access_token'];
-            $expiracionSegundos = $_REQUEST['expires'];
-
-            //se verifican que los parametros ingresados sean los de la persona que ingreso 
-            //para ello obtenemos un token para nuestra aplicacion ;
-            //se crea una sesion interna
-            $pathtoVista = "./modulos/$this->nombre/views/Facebook.php";
-            $view = parent::cargarVista($pathtoVista, 'Facebook', array("apptoken" => $apptoken, "json" => json_decode($json)));
-            parent::renderizarPagina($view->getHTML('default'), $view->getParametros());
-        } else {
-            $pathtoVista = "./modulos/$this->nombre/views/Facebook.php";
-            $view = parent::cargarVista($pathtoVista, 'Facebook', null);
-            parent::renderizarPagina($view->getHTML('error'), $view->getParametros());
-        }
+        
     }
 
     /**
-     * 
+     * Metodo inicial del Modulo de facebook, donde se obtiene el codigo generado por facebook. Luego de que el cliente acepte 
+     *
+     * luego envia una peticion para obtener un accessToken 
      */
     function confirmarIdentidad() {
         if (!empty($_GET['code'])) {
@@ -50,7 +37,6 @@ class HomeController extends Controller {
             $url = "https://graph.facebook.com/oauth/access_token?client_id=" . APPID . "&redirect_uri=" . $redirectURL . "&client_secret=" . APPSECRET . "&code=" . $_GET['code'];
 
             $accessToken = file_get_contents($url);
-
             @list($aT, $expiracion ) = explode("&", $accessToken, 2);
             list($i, $valorToken ) = explode("=", $aT);
             list($j, $expiracion ) = explode("=", $expiracion);
@@ -61,22 +47,23 @@ class HomeController extends Controller {
             $appToken = file_get_contents($url);
             list($k, $appToken ) = explode("=", $appToken);
 
-            // $jsonarray = $this->inspeccionarToken($accessToken, $expiracion, $appToken);
-            if (true) {
+            $arrayInspeccion = $this->inspeccionarToken(trim($valorToken, '"'), trim($expiracion, '"'), trim($appToken, '"'));
+            $validez = $arrayInspeccion["data"]["is_valid"];
+            if ($validez) {
                 //el token es valido.
-                $this->login($appToken, $accessToken, $expiracion);
-               
+                $this->login(trim($appToken,'"'), trim($valorToken, '"'), $expiracion);
+                
             } else {
+                
                 $pathtoVista = "./modulos/$this->nombre/views/Facebook.php";
-                $view = parent::cargarVista($pathtoVista, 'Facebook', array("json" => $jsonarray));
+                $view = parent::cargarVista($pathtoVista, 'Facebook', array("json" => $arrayInspeccion));
                 parent::renderizarPagina($view->getHTML('error'), $view->getParametros());
             }
         } else {
             //nego la peticion
             if ($_GET['error_reason'] != null) {
-                /* error_reason=user_denied
-                  &error=access_denied
-                  &error_description=The+user+denied+your+request. */
+
+                //se muestra el error enviado por facebook.
                 $app = Aplication::getInstance();
                 $msg = $_GET["error_reason"] . " " . $_GET["error"] . " " . $_GET['error_description'];
                 $app->error('000', $msg, "Cancelaste el facebook Login");
@@ -86,22 +73,26 @@ class HomeController extends Controller {
 
     /**
      * 
-     * @param type $appToken
-     * @param type $accessToken
-     * @param type $expiracion
+     * @param type $appToken, token generado para la aplicacion por facebook
+     * @param type $accessToken, token generado para este usuario especifico
+     * @param type $expiracion, expiracion del token
      */
     function login($appToken, $accessToken, $expiracion) {
 
 
-        //agregamos una variables de sesion.
-        $userId = null;        
+        $_SESSION['autenticado'] = true;
+        $json = $this->getUser($accessToken);
+        //se cambian las cookies para crear la sesion.
         setcookie("programate", $accessToken, time() + $expiracion, "/", "anfho93.sytes.net");
-        setcookie('expiracion', $expiracion, time() + $expiracion,  "/", "anfho93.sytes.net");
-        header('location: /');
+        setcookie('expiracion', $expiracion, time() + $expiracion, "/", "anfho93.sytes.net");
+        
+        $pathtoVista = "./modulos/index/views/index.php";
+        $view = parent::cargarVista($pathtoVista, 'index', array("json" => $json, "access" => $accessToken));
+        parent::renderizarPagina($view->getHTML('sugerir'), $view->getParametros());
     }
 
     /**
-     * 
+     * Verifica si el token enviado es correcto y valido
      * @param type $accessToken
      * @param type $expiracion
      * @param type $apptoken
@@ -109,23 +100,36 @@ class HomeController extends Controller {
      */
     function inspeccionarToken($accessToken, $expiracion, $apptoken) {
 
-        $url = "graph.facebook.com/debug_token?input_token=$accessToken&access_token=$apptoken";
-        $JSON = $this->ejecutarCURL($url);
+        $url = "https://graph.facebook.com/debug_token?input_token=$accessToken&access_token=$apptoken";
+        $JSON = file_get_contents($url);
         $JSON = json_decode($JSON, true);
         return $JSON;
     }
 
     /**
-     * 
+     * Obtiene un usuario de facebook en este caso el usuario que se logeo.
+     * @param type $accessToken
+     * @return type
+     */
+    function getUser($accessToken) {
+        $url = "https://graph.facebook.com/me?access_token=" . $accessToken;
+        $JSON = file_get_contents($url);
+
+        return json_decode($JSON, true);
+    }
+
+    /**
+     * Funcion encargada de eliminar las cookies de sesion.
      */
     function logOut() {
-        
-        if(!empty( $_COOKIE['expiracion']) && !empty( $_COOKIE['programate'])){
-            setcookie ("programate", "", time() - $_COOKIE['expiracion'], "/", "anfho93.sytes.net");
+
+        if (!empty($_COOKIE['expiracion']) && !empty($_COOKIE['programate'])) {
+            setcookie("programate", "", time() - $_COOKIE['expiracion'], "/", "anfho93.sytes.net");
             header('location: /');
         }
-        
     }
+    
+    
 
 }
 

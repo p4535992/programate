@@ -20,11 +20,11 @@ class FrontController {
      * Punto de entrada de la aplicacion
      */
     public function manejadorPeticiones() {
-       // session_start();
+        $a = session_id();
+        if ($a == '') session_start();
         $app = Aplication::getInstance();
         $app->manejadorErrores();
         $app->manejadorExcepciones();
-
         $this->parseUri();
 
         /*         * $modulo = (!empty($_REQUEST['modulo'])) ? $_REQUEST['modulo'] : 'index';
