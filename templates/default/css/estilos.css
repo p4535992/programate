@@ -10,8 +10,13 @@ header{
     height: 120px
 }
 
-header img{
-    position: absolute; left: 360px;
+#logo{
+    position: absolute; 
+    left: 360px;
+}
+
+#menu2{
+    float: right;
 }
 
 body{
