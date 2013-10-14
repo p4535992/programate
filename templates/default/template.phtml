@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
+
         <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
         <title>Programate</title>
         <link rel="stylesheet" href="/templates/default/css/estilos.css">
@@ -10,18 +10,32 @@
         </script>
     </head>
     <body>
-        
-       
+
+
         <section id="contenedor">
             <!--Cabecera-->
             <header>
                 <img id="logo" src="<? echo $this->rutaImagenes ?>logo.png" width="130px">
-                
+
                 <div id='menu2'>
                     <img alt="" src="/templates/default/img/boton_menu.png"
-                         width="50px">
+                         width="40px">
                     <ul>
-                        <li>hola</li>
+                        <li><a href="/index/home/index">Ahora</a></li>
+                        <li><a href="/index/home/programar">Programar</a></li>
+                        <li><a href="/index/home/cine">En cine</a></li>
+                        <li><a href="/index/sugerir/mispreferencias">sugerir</a></li>
+                        <li><a href="/index/home/ayuda">Ayuda</a></li>
+                        <li>
+                            <?
+                            if (empty($_COOKIE['programate'])) {
+                                ?>
+                                <a href="https://www.facebook.com/dialog/oauth?client_id=458867537554408&response_type=code&scope=user_likes&redirect_uri=http://anfho93.sytes.net/facebook/home/confirmarIdentidad">Login face</a></li>                
+                            <?
+                        } else {
+                            ?>
+                            <a href="/facebook/home/logOut">Cerrar Sesion</a></li>        
+                        <? } ?>
                     </ul>
                 </div>
             </header>
