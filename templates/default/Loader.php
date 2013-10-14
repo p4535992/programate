@@ -9,12 +9,14 @@ class Loader implements LoaderInterface {
     private $menuHTML;
     private $parametros = array();
     private $rutaImagenes = '/templates/default/img/';
+    private $menuDesplegable;
 
     function __construct() {
         $this->cargarHeader();
         $this->cargarFooter();
         $this->cargarLoginFacebook();
         $this->cargarMenu();
+        $this->cargarDesplegable();
     }
 
     public function cargarContenido($vistaURL, $parametros) {
@@ -36,6 +38,10 @@ class Loader implements LoaderInterface {
 
     public function cargarMenu() {
         $this->menuHTML = "./modulos/topmenu/views/topmenu.phtml";
+    }
+    
+    public function cargarDesplegable(){
+        $this->menuDesplegable="./modulos/menuDesplegable/views/menuDesplegable.phtml";
     }
 
     public function rederizarPagina() {
