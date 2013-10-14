@@ -37,13 +37,14 @@ class SugerirController extends Controller {
     public function getPeliculas() {
         $accessToken = $_COOKIE["programate"];
         $json = json_decode(file_get_contents("https://graph.facebook.com/me/movies?access_token=" . $accessToken), true);
-        return $json;//aun falta obtener las peliculas como tal.
+        
+        return $json['data'];//aun falta obtener las peliculas como tal.
     }
     
     public function getProgramasTelevision(){
          $accessToken = $_COOKIE["programate"];
         $json = json_decode(file_get_contents("https://graph.facebook.com/me/television?access_token=" . $accessToken), true);
-        return $json;//aun falta obtener los programas de tv como tal.
+        return $json['data'];//aun falta obtener los programas de tv como tal.
     }
 
 }

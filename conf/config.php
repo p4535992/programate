@@ -11,5 +11,8 @@
   define("DBSERVER","localhost");
   define("DBPORT","3306");
   define("DBPASS","123456");
-  define("ROVIAPITVLISTINGS", "jygte3dr2seduqumsdbhnamc");
+  define("RAPITVLISTINGS", "jygte3dr2seduqumsdbhnamc");
+  define("RAUTOCOMPLETE","juvdh9qv65uvdtxr4pyjm7zn");
+  define("RSSAUTOCOMPLETE","ESKxYt9B4G");
+  define("RMETADATASEARCH", "yjznda6guw9g2t8hzbc4dhjr");
 ?>

@@ -79,6 +79,10 @@ class Controller {
         return curl_exec($ch);
     }
 
+    /**
+     * 
+     * @return boolean
+     */
     public function isLoggedIn() {
         if (isset($_SESSION["autenticado"])) {
             if ($_SESSION["autenticado"] == true) {
@@ -88,7 +92,9 @@ class Controller {
             }
             else
                 return false;
-        }else return false;
+        }
+        else
+            return false;
     }
 
 }
