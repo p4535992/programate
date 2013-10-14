@@ -121,13 +121,14 @@ footer{
 
 
 
-@media only screen and (max-width: 800px) {
+@media screen and (max-width: 820px) {
     nav ul li{
         width: 33.2%
     }
     
-    header img{
-        position: absolute; left: 10px;
+    #logo{
+        position: absolute; 
+        left: 10px;
         width: 100px;
     }
     
@@ -143,7 +144,6 @@ footer{
     #webs img{
         width: 100px;
         height: 100px;
-        
     }   
     
 }
