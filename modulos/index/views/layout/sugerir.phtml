@@ -1,15 +1,14 @@
 <?
-//$peliculas = 
-var_dump($this->parametros['peliculas']);
-/*foreach ($peliculas as $key => $value) {
-    if($value['category']=='Movie')
-    foreach ($value as $k => $v) {
+$peliculas = ($this->parametros['peliculas']);
+//var_dump($peliculas);
+foreach ($peliculas as $key => $value) {
+  foreach ($value->getData() as $k => $v) {
         echo $k." : ".$v."<br/>";
     }
     
-}*/
+}
 
-echo '\n';
+/*echo '\n';
 $programa = $this->parametros['programas'];
 foreach ($programa as $key => $value) {
     if($value['category']=='Tv show')
@@ -17,6 +16,6 @@ foreach ($programa as $key => $value) {
         echo $k." : ".$v."<br/>";
     }
     
-}
+}*/
 
 ?>

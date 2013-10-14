@@ -86,9 +86,10 @@ class HomeController extends Controller {
         setcookie("programate", $accessToken, time() + $expiracion, "/", "anfho93.sytes.net");
         setcookie('expiracion', $expiracion, time() + $expiracion, "/", "anfho93.sytes.net");
         
-        $pathtoVista = "./modulos/index/views/index.php";
-        $view = parent::cargarVista($pathtoVista, 'index', array("json" => $json, "access" => $accessToken));
-        parent::renderizarPagina($view->getHTML('default'), $view->getParametros());
+        //$pathtoVista = "./modulos/index/views/index.php";
+        //$view = parent::cargarVista($pathtoVista, 'index', array("json" => $json, "access" => $accessToken));
+        //parent::renderizarPagina($view->getHTML('default'), $view->getParametros());
+        header("Location: http://anfho93.sytes.net");
     }
 
     /**

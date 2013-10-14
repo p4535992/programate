@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 include_once './lib/models/ModelInterface.php';
-include_once '.lib/models/Entity.php';
+include_once './lib/models/Entity.php';
 /**
  * es la clase padre que heredaran los demas modelos, con unas funciones basicas de cada uno
  * CRUDS.
@@ -18,7 +18,7 @@ class Model implements ModelInterface{
         
     }
 
-    public function actualizar(Entity $entidad) {
+    public function actualizar( $entidad) {
         
     }
 
@@ -26,11 +26,11 @@ class Model implements ModelInterface{
         
     }
 
-    public function eliminar(Entity $entidad) {
+    public function eliminar( $entidad) {
         
     }
 
-    public function insertar(Entity $entidad) {
+    public function insertar( $entidad) {
         
     }
 
