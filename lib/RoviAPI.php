@@ -38,9 +38,18 @@ class RoviAPI {
         return $json;
     }
     
-    function videoInfo(){
-        $baseuri = "http://api.rovicorp.com/data/v1.1/video/info?apikey="."&sig=sig&cosmoid=7903";
+    function videoInfo($videoquery, $serviceId=null, $include=array(), $iguide, $cosmoid ){
+        $sig =  md5(RMETADATASEARCH.RSSAUTOCOMPLETE.time());
+        //reemplazar video query por + en los espacios.
+        $baseuri = "http://api.rovicorp.com/data/v1.1/video/info?apikey=".RMETADATASEARCH."&sig=$sig&video=$videoquery";
         
+    }
+    
+    function buscarMovie($videoQuery){
+        $sig =  md5(RMETADATASEARCH.RSSMETADATASEARCH.time());
+        $url = "http://api.rovicorp.com/search/v2.1/video/search?sig=$sig&entitytype=movie&query=$videoQuery&rep=1&size=5&offset=0&country=CO&language=en&format=json&apikey=".RMETADATASEARCH;
+        $respuesta = json_decode(file_get_contents($url), true);
+        return $respuesta;
     }
     
     

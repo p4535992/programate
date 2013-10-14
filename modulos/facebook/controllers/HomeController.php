@@ -88,7 +88,7 @@ class HomeController extends Controller {
         
         $pathtoVista = "./modulos/index/views/index.php";
         $view = parent::cargarVista($pathtoVista, 'index', array("json" => $json, "access" => $accessToken));
-        parent::renderizarPagina($view->getHTML('sugerir'), $view->getParametros());
+        parent::renderizarPagina($view->getHTML('default'), $view->getParametros());
     }
 
     /**
