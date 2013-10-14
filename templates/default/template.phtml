@@ -18,14 +18,9 @@
                 <img id="logo" src="<? echo $this->rutaImagenes ?>logo.png" width="130px">
 
                 <div id='menu2'>
-                    <img alt="" src="/templates/default/img/boton_menu.png"
-                         width="40px">
+                    <a href="#"><img alt="" src="/templates/default/img/boton_menu.png"
+                                     width="40px"></a>
                     <ul>
-                        <li><a href="/index/home/index">Ahora</a></li>
-                        <li><a href="/index/home/programar">Programar</a></li>
-                        <li><a href="/index/home/cine">En cine</a></li>
-                        <li><a href="/index/sugerir/mispreferencias">sugerir</a></li>
-                        <li><a href="/index/home/ayuda">Ayuda</a></li>
                         <li>
                             <?
                             if (empty($_COOKIE['programate'])) {
@@ -36,6 +31,12 @@
                             ?>
                             <a href="/facebook/home/logOut">Cerrar Sesion</a></li>        
                         <? } ?>
+                        <li><a href="/index/home/index">Ahora</a></li>
+                        <li><a href="/index/home/programar">Programar</a></li>
+                        <li><a href="/index/home/cine">En cine</a></li>
+                        <li><a href="/index/sugerir/mispreferencias">sugerir</a></li>
+                        <li><a href="/index/home/ayuda">Ayuda</a></li>
+                        <li><a href="/index/home/donacion">donacion</a></li>
                     </ul>
                 </div>
             </header>
