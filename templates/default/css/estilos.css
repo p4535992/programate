@@ -19,6 +19,7 @@ header{
     float: right;
     padding: 0px;
     position: relative;
+    display: none;
 }
 
 #menu2 ul{
@@ -27,6 +28,7 @@ header{
     font-size: 0;
     list-style: none;
     position: absolute;
+    right: 0px;
     background: rgba(0,0,0,.9);
     display: none;
 }
@@ -36,6 +38,11 @@ header{
     padding: 10px;
     font-size: 16px;
     text-align: center;
+    border: 1px solid #9c0101;
+    border-top:none;
+}
+#menu2 ul li:first-child {
+    border-top: 1px solid #9c0101;
 }
 
 #menu2 ul li:active{
@@ -88,7 +95,7 @@ nav ul li a{
     border-left: 1px solid #000;
     border-right: 1px solid #666;
     display: block;
-    
+
     line-height: 28px;
     padding: 0 14px;
     margin: 6px 0;
@@ -165,28 +172,21 @@ footer{
 
 
 @media screen and (max-width: 820px) {
-    nav ul li{
-        width: 33.2%
-    }
     
+
     #logo{
         position: absolute; 
         left: 10px;
         width: 100px;
     }
-    
+
     #campo{
         display: none
     }
-    
+
     #webs img{
         width: 100px;
         height: 100px;
-    }
-    
-    #webs img{
-        width: 100px;
-        height: 100px;
-    }   
-    
+    } 
+
 }
