@@ -20,6 +20,7 @@ header{
     padding: 0px;
     position: relative;
     display: none;
+    right: 20px;
 }
 
 #menu2 ul{
@@ -77,7 +78,7 @@ nav ul{
 nav ul li{
     display: inline-block;
     width: 14.28%;
-    font-size: 15px;
+    font-size: 14.4px;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -171,7 +172,7 @@ footer{
 
 
 
-@media screen and (max-width: 820px) {
+@media screen and (max-width: 825px) {
     
 
     #logo{
@@ -188,5 +189,25 @@ footer{
         width: 100px;
         height: 100px;
     } 
+    
+    nav ul li{
+        width: 16.5%;
+    }
 
+}
+
+@media screen and (max-width: 691px) {
+    .canal,.programa{
+        
+    }
+}
+
+@media screen and (max-width: 691px) {
+    nav{
+        display: none;
+    }
+    
+    #menu2{
+        display: block;
+    }
 }
