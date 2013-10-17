@@ -1,29 +1,29 @@
 <?
+
 $peliculas = ($this->parametros['peliculas']);
 //var_dump($peliculas);
-$HTML="";
-$k=$value->getData();
+$HTML = "";
+
 foreach ($peliculas as $key => $value) {
-  $HTML.='<article>
+    $k = $value->getData();
+    $HTML.='<article>
     <h2>';
-  $HTML.= $k['titulo'].
-          '</h2>';
-  $HTML.='<img src="';
-  $HTML.= $k['imagen'];
-  $HTML.= 'height="150" width="150">';
-  $HTML.='<h3>'.$k['categoria'].'</h3>';
-  $HTML.="</article>";
-    
+    $HTML.= $k['titulo'] .
+            '</h2>';
+    $HTML.='<img src="';
+    $HTML.= $k['imagen'];
+    $HTML.= 'height="150" width="150">';
+    $HTML.='<h3>' . $k['categoria'] . '</h3>';
+    $HTML.="</article>";
 }
 
-/*echo '\n';
-$programa = $this->parametros['programas'];
-foreach ($programa as $key => $value) {
-    if($value['category']=='Tv show')
-      foreach ($value as $k => $v) {
-        echo $k." : ".$v."<br/>";
-    }
-    
-}*/
+/* echo '\n';
+  $programa = $this->parametros['programas'];
+  foreach ($programa as $key => $value) {
+  if($value['category']=='Tv show')
+  foreach ($value as $k => $v) {
+  echo $k." : ".$v."<br/>";
+  }
 
+  } */
 ?>
