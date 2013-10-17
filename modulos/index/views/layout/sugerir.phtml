@@ -2,15 +2,16 @@
 $peliculas = ($this->parametros['peliculas']);
 //var_dump($peliculas);
 $HTML="";
+$k=$value->getData();
 foreach ($peliculas as $key => $value) {
   $HTML.='<article>
     <h2>';
-  $HTML.= $value->getData()['titulo'].
+  $HTML.= $k['titulo'].
           '</h2>';
   $HTML.='<img src="';
-  $HTML.= $value->getData()['imagen'];
+  $HTML.= $k['imagen'];
   $HTML.= 'height="150" width="150">';
-  $HTML.='<h3>'.$value->getData()['categoria'].'</h3>';
+  $HTML.='<h3>'.$k['categoria'].'</h3>';
   $HTML.="</article>";
     
 }
@@ -26,10 +27,3 @@ foreach ($programa as $key => $value) {
 }*/
 
 ?>
-
-
-<article>
-    <h2><?echo $value->getData()['titulo'] ?></h2>
-    <img src="<?echo $value->getData()['imagen']?>" height="150" width="150">
-    <h3><?echo $value->getData()['categoria']?></h3>
-</article>
