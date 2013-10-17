@@ -32,7 +32,7 @@ class HomeController extends Controller {
      */
     function confirmarIdentidad() {
         if (!empty($_GET['code'])) {
-            $redirectURL = "http://programate.com/facebook/home/confirmarIdentidad";
+            $redirectURL = "http://anfho93.sytes.net/facebook/home/confirmarIdentidad";
             $url = "Location: https://graph.facebook.com/oauth/access_token?client_id=" . APPID . "&redirect_uri=" . $redirectURL . "&client_secret=" . APPSECRET . "&code=" . $_GET['code'];
             $url = "https://graph.facebook.com/oauth/access_token?client_id=" . APPID . "&redirect_uri=" . $redirectURL . "&client_secret=" . APPSECRET . "&code=" . $_GET['code'];
 

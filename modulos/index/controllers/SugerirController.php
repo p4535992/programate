@@ -18,7 +18,7 @@ class SugerirController extends Controller {
 
     private $nombre = "index";
 
-    //put your code here
+    
 
     /**
      * 
@@ -61,12 +61,10 @@ class SugerirController extends Controller {
             //verificamos si la respuesta a la consulta es correcta.
             if ($roviRespuesta['code'] == 200) {
                 //la respuesta fue correcta
-             
+
                 $movieModel->cargarPeliculas($roviRespuesta['video']);
-                
             } else {
                 continue;
-                
             }
         }
 
@@ -74,6 +72,10 @@ class SugerirController extends Controller {
         return $movieModel->getArrayMovies();
     }
 
+    /**
+     * 
+     * @return type
+     */
     public function getProgramasTelevision() {
         $accessToken = $_COOKIE["programate"];
         $json = json_decode(file_get_contents("https://graph.facebook.com/me/television?access_token=" . $accessToken), true);

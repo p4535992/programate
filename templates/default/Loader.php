@@ -10,7 +10,9 @@ class Loader implements LoaderInterface {
     private $parametros = array();
     private $rutaImagenes = '/templates/default/img/';
     private $menuDesplegable;
-
+/**
+ * 
+ */
     function __construct() {
         $this->cargarHeader();
         $this->cargarFooter();
@@ -18,12 +20,18 @@ class Loader implements LoaderInterface {
         $this->cargarMenu();
         $this->cargarDesplegable();
     }
-
+/**
+ * 
+ * @param type $vistaURL
+ * @param type $parametros
+ */
     public function cargarContenido($vistaURL, $parametros) {
         $this->contenidoURL = $vistaURL;
         $this->parametros = array_merge((array)$parametros, $this->parametros);
     }
-
+/**
+ * 
+ */
     public function cargarFooter() {
         //carga el modulo de Footer
     }

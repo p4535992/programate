@@ -44,11 +44,17 @@ class MovieModel extends Model {
             $this->arrayMovies[] = $pelicula;
         }
     }
-
+/**
+ * 
+ * @return type
+ */
     public function getArrayMovies() {
         return $this->arrayMovies;
     }
-
+/**
+ * 
+ * @param type $arrayMovies
+ */
     public function setArrayMovies($arrayMovies) {
         $this->arrayMovies = $arrayMovies;
     }
