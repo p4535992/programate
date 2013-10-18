@@ -4,7 +4,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-include_once './lib/models/Model.php';
+include_once './lib/models/Modelo.php';
 include_once './lib/models/Entity.php';
 
 /**
@@ -12,7 +12,7 @@ include_once './lib/models/Entity.php';
  *
  * @author Andres
  */
-class MovieModel extends Model {
+class MovieModel extends Modelo {
 
     private $arrayMovies = array();
 

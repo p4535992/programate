@@ -8,6 +8,10 @@
 include_once './lib/Controller.php';
 include_once './lib/RoviAPI.php';
 include_once './modulos/index/models/MovieModel.php';
+include(RDFAPI_INCLUDE_DIR . "RdfAPI.php");
+include(RDFAPI_INCLUDE_DIR . "/sparql/SparqlEngine.php");
+
+// Create a SPARQL client
 
 /**
  * Description of SugerirController
@@ -18,20 +22,19 @@ class SugerirController extends Controller {
 
     private $nombre = "index";
 
-    
-
-    /**
-     * 
+     /**
+     * Retorna las peliculas preferidas del usuario.
      */
     public function mispreferencias() {
         //verifica si inicio sesion
         if ($this->isLoggedIn()) {
             $peliculas = $this->getPeliculas();
             $programas = $this->getProgramasTelevision();
-
+            $infoSparql = $this->getInfoPeliculasRelacionadas($peliculas);
 
             $pathtoVista = "./modulos/$this->nombre/views/index.php";
-            $view = parent::cargarVista($pathtoVista, 'index', array("peliculas" => $peliculas, 'programas' => $programas));
+            $view = parent::cargarVista($pathtoVista, 'index', array("peliculas" => $peliculas, 'programas' => $programas, 'sugerencias' =>$infoSparql));
+            
             parent::renderizarPagina($view->getHTML('sugerir'), $view->getParametros());
         } else {
             header("Location: /index/home/index");
@@ -61,7 +64,6 @@ class SugerirController extends Controller {
             //verificamos si la respuesta a la consulta es correcta.
             if ($roviRespuesta['code'] == 200) {
                 //la respuesta fue correcta
-
                 $movieModel->cargarPeliculas($roviRespuesta['video']);
             } else {
                 continue;
@@ -70,6 +72,41 @@ class SugerirController extends Controller {
 
         // return $json['data'];//aun falta obtener las peliculas como tal.
         return $movieModel->getArrayMovies();
+    }
+    
+    /**
+     * 
+     */
+    public function getInfoPeliculasRelacionadas($peliculas){
+        if($peliculas!=null && !empty($peliculas) && count($peliculas)>0 )
+        {
+          try{
+              $modelFactory = new ModelFactory();
+              $cliente =  $modelFactory->getSparqlClient("http://data.linkedmdb.org/sparql");
+              $query = new ClientQuery();
+              $consulta = 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                           PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                           PREFIX movie: <http://data.linkedmdb.org/resource/movie/>
+                           PREFIX dc: <http://purl.org/dc/elements/1.1/>
+
+                            SELECT DISTINCT ?titulo ?nombre ?genero
+                            WHERE {
+                                ?titulo rdf:type  movie:film .   
+                                ?titulo rdfs:label ?nombre .
+                                FILTER regex(?nombre ,"harry","i")
+                            } LIMIT 5';
+              $cliente->setOutputFormat("xml");
+              $query->query($consulta);
+              $resultado = $cliente->query($query);
+              $htmlTabla = SPARQLEngine::writeQueryResultAsHtmlTable($resultado); 
+              return $resultado;
+          }  catch (Exception $e){
+              
+          }
+        }else{
+            //el usuario no tiene peliculas en su red social
+            //recomendar peliculas actuales.
+        }
     }
 
     /**

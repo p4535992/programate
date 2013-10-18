@@ -12,7 +12,7 @@ include_once './lib/models/Entity.php';
  *
  * @author Andres
  */
-class Model implements ModelInterface{
+class Modelo implements ModelInterface{
     
     function __construct() {
         
