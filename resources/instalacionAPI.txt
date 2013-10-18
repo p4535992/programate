@@ -1,0 +1,12 @@
+
+    Download the current version from: http://sourceforge.net/projects/rdfapi-php/
+    Unpack the zip file.
+    Include RDF API into your scripts:
+        define("RDFAPI_INCLUDE_DIR", "C:/Apache/htdocs/rdf_api/api/");
+        include(RDFAPI_INCLUDE_DIR . "RDFAPI.php");
+    Change the constant RDFAPI_INCLUDE_DIR to the directory in which you have unpacked the zip file.
+
+RAP can be used with PHP 4 or PHP 5.
+
+    When used with PHP 4 it requires at least version 4.2
+    When used with PHP 5 it requires at least version 5.0.1 

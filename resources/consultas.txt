@@ -1,0 +1,39 @@
+Consultas SPARQL movies
+
+http://dbpedia.org/snorql/?query=PREFIX+movie%3A+%3Chttp%3A%2F%2Fschema.org%2F%3E%0D%0APREFIX+movie2%3A+%3Chttp%3A%2F%2Fschema.org%2Fproperty%2F%3E%0D%0APREFIX+dbo%3A+%3Chttp%3A%2F%2Fdbpedia.org%2Fontology%2F%3E%0D%0A%0D%0ASELECT+DISTINCT+%3Ftitulo+%3Fnombre+%3Fresumen%0D%0A++++WHERE+%7B%0D%0A++++%3Ftitulo+rdf%3Atype+%3Chttp%3A%2F%2Fdbpedia.org%2Fontology%2FFilm%3E+.%0D%0A++++%3Ftitulo+rdfs%3Acomment+%3Fresumen+.%0D%0A++++%3Ftitulo+dbpedia2%3Agenre+%3AFilm_score+.%0D%0A++++%0D%0A%0D%0A++++%7D+
+
+
+PREFIX movie: <http://schema.org/>
+PREFIX movie2: <http://schema.org/property/>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+
+SELECT DISTINCT ?titulo ?nombre ?resumen
+    WHERE {
+    ?titulo rdf:type <http://dbpedia.org/ontology/Film> .
+    ?titulo dc:title ?resumen .
+    ?titulo dbpedia2:genre :Film_score .   
+FILTER regex(?resumen, "wall", "i")
+    } 
+
+
+
+
+
+
+http://yasgui.laurensrietveld.nl/
+
+http://data.linkedmdb.org/sparql
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX movie: <http://data.linkedmdb.org/resource/movie/>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+
+SELECT DISTINCT ?titulo ?nombre ?genero
+
+    WHERE {
+    ?titulo rdf:type  movie:film .   
+	?titulo rdfs:label ?nombre .
+  FILTER regex(?nombre ,"bat","i")
+    } 
