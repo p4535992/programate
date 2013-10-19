@@ -89,7 +89,7 @@ class SugerirController extends Controller {
                            PREFIX movie: <http://data.linkedmdb.org/resource/movie/>
                            PREFIX dc: <http://purl.org/dc/elements/1.1/>
 
-                            SELECT DISTINCT ?titulo ?nombre ?genero
+                            SELECT DISTINCT ?titulo ?nombre 
                             WHERE {
                                 ?titulo rdf:type  movie:film .   
                                 ?titulo rdfs:label ?nombre .
@@ -98,8 +98,12 @@ class SugerirController extends Controller {
               $cliente->setOutputFormat("xml");
               $query->query($consulta);
               $resultado = $cliente->query($query);
-              $htmlTabla = SPARQLEngine::writeQueryResultAsHtmlTable($resultado); 
-              return $resultado;
+              
+              $p = xml_parser_create();
+              xml_parse_into_struct($p, $resultado, $vals, $index);
+              xml_parser_free($p);
+             // $htmlTabla = SPARQLEngine::writeQueryResultAsHtmlTable($resultado); 
+              return $vals;
           }  catch (Exception $e){
               
           }

@@ -37,7 +37,15 @@ class RoviAPI {
         $json = json_decode(file_get_contents($baseuri));
         return $json;
     }
-    
+    /**
+     * 
+     * @param type $videoquery
+     * @param type $serviceId
+     * @param type $include
+     * @param type $iguide
+     * @param type $cosmoid
+     * @return type
+     */
     function movieInfo($videoquery, $serviceId=null, $include=array(), $iguide=null, $cosmoid=NULL ){
         $sig =  md5(RMETADATASEARCH.RSSMETADATASEARCH.time());
         //reemplazar video query por + en los espacios.
@@ -45,11 +53,37 @@ class RoviAPI {
         $respuesta = json_decode(file_get_contents($baseuri), true);
         return $respuesta;
     }
-    
+    /**
+     * 
+     * @param type $videoQuery
+     * @return type
+     */
     function buscarMovie($videoQuery){
         $sig =  md5(RMETADATASEARCH.RSSMETADATASEARCH.time());
         $url = "http://api.rovicorp.com/search/v2.1/video/search?sig=$sig&entitytype=movie&query=$videoQuery&rep=1&size=5&offset=0&country=CO&language=en&format=json&apikey=".RMETADATASEARCH;
         
+        $respuesta = json_decode(file_get_contents($url), true);
+        return $respuesta;
+    }
+    /**
+     * 
+     * @param type $codigopostal
+     * @param type $codigoPais
+     * @param type $lenguaje
+     * @param type $msoid
+     * @param type $formato
+     */
+    function getServices($codigopostal=0, $codigoPais="CO", $lenguaje="es-CO", $msoid=null,$formato="json"){
+        
+        //$sig = md5();
+        $url = "http://api.rovicorp.com/TVlistings/v9/listings/services/postalcode/$codigopostal/info?locale=$lenguaje&countrycode=$codigoPais&format=$formato&apikey=".RAPITVLISTINGS;
+        $respuesta = json_decode(file_get_contents($url), true);
+        return $respuesta;
+    }
+    
+    static function darCalendario($servicioId, $lenguaje="es-CO", $duracion=60 ){
+       
+        $url ="http://api.rovicorp.com/TVlistings/v9/listings/gridschedule/$servicioId/info?locale=$lenguaje&duration=$duracion&includechannelimages=false&format=json&apikey=".RAPITVLISTINGS;
         $respuesta = json_decode(file_get_contents($url), true);
         return $respuesta;
     }

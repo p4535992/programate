@@ -1,5 +1,4 @@
 <?
-
 $peliculas = ($this->parametros['peliculas']);
 //var_dump($peliculas);
 $HTML = "";
@@ -15,16 +14,26 @@ foreach ($peliculas as $key => $value) {
     $HTML.= 'height="150" width="150">';
     $HTML.='<h3>' . $k['categoria'] . '</h3>';
     $HTML.="</article>";
-    
+
     echo $HTML;
-    $HTML ="";
+    $HTML = "";
 }
 ?>
 
 <div class="espFooter">
 </div>
 <?
-$sugerencias =  $this->parametros['sugerencias'];
-echo $sugerencias;
-
+$sugerencias = $this->parametros['sugerencias'];
+foreach ($sugerencias as $key => $value) {
+    //var_dump($value);
+    echo '<br>';
+    if ($value['tag'] == "URI" || $value['tag'] == "LITERAL") {
+        echo $value['value'] . ":" . $value['value'] ;
+    }
+    /* foreach ($value as $indice => $valor) {
+      if($indice=="URI" || $indice=="LITERAL"){
+      echo $indice .":".$valor  ;
+      }
+      } */
+}
 ?>

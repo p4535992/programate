@@ -1,0 +1,14 @@
+<form method="POST" action="/rovi/index/cargarservicio">
+    <select id="servicio" name="servicio">
+        <?
+        $arregloServicio = $this->parametros['Servicios'];
+        foreach ($arregloServicio as $key => $value) {
+            echo '<option value="' . $value[0] . '">' . $value[1] . '</option>';
+        }
+        ?>
+    </select>
+    <input type="submit" id="cargarPrograma"  value="Cargar">
+</form>
+<?
+        var_dump($this->parametros['horario']);
+?>
