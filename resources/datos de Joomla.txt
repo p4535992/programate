@@ -1,0 +1,10 @@
+El software está siendo instalado. Por favor asegúrate de haber copiado los detalles de la instalación en una ubicación segura
+Software: Joomla
+Version: 1.7.3
+Installation URL: http://anfhotecnology.zz.mu/
+Admin Login URL: http://anfhotecnology.zz.mu//administrator
+Admin uername: anfho93@gmail.com
+Admin password: rosendo
+Database Name: u844021489_equpe
+Database Username: u844021489_umuby
+Database Password: yLuTedaWaj

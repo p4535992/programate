@@ -17,7 +17,22 @@ class IndexController extends Controller {
      * Obtiene los servicios actuales en colombia.
      * @param type $param
      */
-    function darProveedoresServicio() {
+    public function index(){
+        $horario = $this->cargarservicio();
+        $menudias = $this->getDayPicker();
+        $arraydata = $this->darProveedoresServicio();
+        $GRID = $this->darGRID();
+        $parametros = array("Servicios" =>$arraydata, "horario"=>$horario, "menudias"=>$menudias,"grid"=>$GRID);
+        include_once './lib/ViewController.php';
+        $pathtoVista = "./modulos/rovi/views/index.php";
+        $view = parent::cargarVista($pathtoVista, 'index', $parametros);
+        parent::renderizarPagina($view->getHTML(), $view->getParametros());
+    }
+  /**
+   * 
+   * @return type
+   */          
+   private function darProveedoresServicio() {
         $roviAPI = new RoviAPI();
         $proveedores = $roviAPI->getServices(0, "CO", "es-CO");
         //se obtiene solo la informacion relevante.
@@ -29,21 +44,32 @@ class IndexController extends Controller {
 
         return $arraydata;
     }
-
-    function cargarservicio() {
-        if ($_POST['servicio'] != NULL) {
+/**
+ * 
+ */
+    private function cargarservicio() {
+        if (isset($_POST['servicio'])&&$_POST['servicio'] != NULL) {
             $idServicio = $_POST['servicio'];
         } else {
             $idServicio = "68337";
-        }
-        $arraydata = $this->darProveedoresServicio();
+        }     
         $arreglo = RoviAPI::darCalendario($idServicio);
         //se obtiene la info relevante
-        $i = $arreglo['GridScheduleResult']['GridChannels'];
-        
-        $pathtoVista = "./modulos/rovi/views/index.php";
-        $view = parent::cargarVista($pathtoVista, 'index', array("Servicios" => $arraydata, "horario" =>$i));
-        parent::renderizarPagina($view->getHTML(), $view->getParametros());
+        $horario = $arreglo['GridScheduleResult']['GridChannels'];
+        return $horario ;
+    }
+    
+    
+    private function getDayPicker() {
+        $pathtoVista = "./modulos/rovi/views/DayPicker.php";
+        $dayPickerView = parent::cargarVista($pathtoVista, 'DayPicker', null);
+        return $dayPickerView->getHTML();
+    }
+    
+    private function darGRID() {
+        $pathtoVista = "./modulos/rovi/views/Grid.php";
+        $dayPickerView = parent::cargarVista($pathtoVista, 'Grid', null);
+        return $dayPickerView->getHTML();
     }
 
 }

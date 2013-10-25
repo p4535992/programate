@@ -115,6 +115,7 @@ nav li:last-child a{
     background-image: url(../img/fondo.png);
     background-repeat: repeat;
     border : 2px solid black;
+   
 }
 
 article{
@@ -195,8 +196,10 @@ footer{
     nav ul li{
         width: 16.5%;
     }
-
+    
+   
 }
+
 
 @media screen and (max-width: 720px) {
     article img{

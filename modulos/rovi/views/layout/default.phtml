@@ -1,14 +1,64 @@
-<form method="POST" action="/rovi/index/cargarservicio">
-    <select id="servicio" name="servicio">
+<style>
+
+    .halign{
+
+        padding: 5px;        
+        margin-left: 20px;
+        margin-right: 20px;        
+        max-width: 810px;        
+        display: inline-block;
+        width: auto;
+    }
+
+    .btn-group{
+        padding: 5px;
+        margin-left: 10px;
+    }
+
+</style>
+<!-- Latest compiled and minified CSS 
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+<!-- Optional theme 
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript 
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>-->
+<div id="horario" >
+    <div id="box1" class="halign"><h2>Horario de Television</h2></div>
+    <div id="box2" class="halign">
+        <form id="miform "method="POST" action="/rovi/index/cargarservicio">
+
+
+            <select id="servicio" name="servicio" >
+                <?
+                $arregloServicio = $this->parametros['Servicios'];
+                foreach ($arregloServicio as $key => $value) {
+                    echo '<option value="' . $value[0] . '">' . $value[1] . '</option>';
+                }
+                ?>
+            </select>
+
+            <input type="submit" id="cargarPrograma"  value="Cargar">           
+        </form>
+    </div>
+    <br>
+    <div class="btn-group" id="daypicker">        
         <?
-        $arregloServicio = $this->parametros['Servicios'];
-        foreach ($arregloServicio as $key => $value) {
-            echo '<option value="' . $value[0] . '">' . $value[1] . '</option>';
-        }
-        ?>
-    </select>
-    <input type="submit" id="cargarPrograma"  value="Cargar">
-</form>
+            echo $this->parametros['menudias'];           
+        ?>        
+        <button type="button" class="btn btn-default">></button>
+    </div>
+    
+    <?
+            echo $this->parametros['grid'];
+    ?>
+
+</div>
+<div>
+
+</div>
+
 <?
-        var_dump($this->parametros['horario']);
+// var_dump($this->parametros['horario']);
 ?>
