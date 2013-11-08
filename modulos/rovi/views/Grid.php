@@ -17,9 +17,10 @@ class GridViewController extends ViewController {
      * 
      * @param type $inicio, Horario de inicio del Horario
      */
-    public function getHTML($inicio = 6) {
+    public function getHTML($inicio = 6, $horariojson) {
         //se crea el header.
-        return $this->getHeaderGrid($inicio);
+        $horariosServicio = $this->crearHorarios($horariojson);
+        return ($this->getHeaderGrid($inicio) . $horariosServicio);
     }
 
     private function getHeaderGrid($inicio) {
@@ -46,6 +47,30 @@ class GridViewController extends ViewController {
         return $headergrid.=$this->getCSS();
     }
 
+    /**
+     * 
+     * @param type $horarioJson
+     */
+    private function crearHorarios($horarioJson) {
+        $html = '<div> <ul class="channels">';
+        foreach ($horarioJson as $key => $canal) {
+
+
+            $html.='<li class="canales">'.$canal['SourceLongName'].'
+                    
+                    </li>                    
+                    <li class="hora">6:00</li>
+                    <li class="hora">6:30</li>
+                    <li class="hora">7:00</li>                    
+                    <li class="hora">7:30</li>
+                    <li class="hora">8:00</li>
+                    <li class="hora">8:30</li>
+                    ';
+        }
+        $html.="</ul></div>";
+        return $html;
+    }
+
     public function getCSS() {
         return "
             <style>
@@ -54,7 +79,13 @@ class GridViewController extends ViewController {
                 background: rgba(0,0,0,.5);
                 font-size: 0;
             }
-             .canales {
+            
+            .channels{
+                padding: 0;
+                background: rgba(0,0,0,.5);
+                font-size: 0;
+            }
+             .canales  {
                 display: inline-block;               
                 font-size: 14.4px;
                 box-sizing: border-box;

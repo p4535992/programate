@@ -19,9 +19,10 @@ class IndexController extends Controller {
      */
     public function index(){
         $horario = $this->cargarservicio();
+        
         $menudias = $this->getDayPicker();
         $arraydata = $this->darProveedoresServicio();
-        $GRID = $this->darGRID();
+        $GRID = $this->darGRID($horario);
         $parametros = array("Servicios" =>$arraydata, "horario"=>$horario, "menudias"=>$menudias,"grid"=>$GRID);
         include_once './lib/ViewController.php';
         $pathtoVista = "./modulos/rovi/views/index.php";
@@ -59,17 +60,25 @@ class IndexController extends Controller {
         return $horario ;
     }
     
-    
+    /**
+     * 
+     * @return type
+     */
     private function getDayPicker() {
         $pathtoVista = "./modulos/rovi/views/DayPicker.php";
         $dayPickerView = parent::cargarVista($pathtoVista, 'DayPicker', null);
         return $dayPickerView->getHTML();
     }
-    
-    private function darGRID() {
+    /**
+     * 
+     * @param type $horario
+     * @return type
+     */
+    private function darGRID($horario) {
         $pathtoVista = "./modulos/rovi/views/Grid.php";
         $dayPickerView = parent::cargarVista($pathtoVista, 'Grid', null);
-        return $dayPickerView->getHTML();
+        $horaActual = 6;
+        return $dayPickerView->getHTML($horaActual,$horario);
     }
 
 }
