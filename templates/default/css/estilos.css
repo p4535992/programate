@@ -7,7 +7,8 @@ header{
     text-align: center;
     position: relative;
     margin-top: 10px;
-    height: 120px
+    height: 120px;
+    background: red;
 }
 
 #logo{
@@ -118,51 +119,6 @@ nav li:last-child a{
    
 }
 
-article{
-    color: black;
-    padding: 5px;
-    margin-top:30px;
-    margin-left: 20px;
-    margin-right: 20px;
-    border: 1px solid white;
-    display: inline-block;
-    max-width: 810px;
-    background: #ccc;
-    box-sizing: border-box;
-    -webkit-transition: .2s;
-    -moz-transition: .2s;
-    transition: .2s;
-    display: inline-block;
-    width: auto;
-}
-
-article:hover{
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    transform: scale(1.1);
-}
-
-.programa,.info{
-    float: left;
-}
-
-
-
-.programa{
-    margin-right: 20px;
-}
-
-.canal{
-    float: right;
-    background-color: background;
-    margin-left: 20px;
-}
-
-.info{
-    max-width: 62%;
-    margin-right: 5px; 
-    min-width: 62%;    
-}
 
 .espFooter{
     height: 25px;
@@ -170,6 +126,7 @@ article:hover{
 
 footer{
     text-align: center;
+    color: white;
 }
 
 
