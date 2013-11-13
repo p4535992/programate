@@ -3,17 +3,10 @@
 }
 
 header{
-    max-width: 820px;
     text-align: center;
     position: relative;
     margin-top: 10px;
     height: 120px;
-    background: red;
-}
-
-#logo{
-    position: absolute; 
-    left: 360px;
 }
 
 #menu2{
@@ -70,20 +63,27 @@ body{
     padding: 0;
 }
 
-.topmenu ul{
-    padding: 0;
-    background: rgba(0,0,0,.5);
-    font-size: 0;
+.topmenu{
 }
 
+
+.topmenu ul{
+    background: rgba(0,0,0,.5);
+    font-size: 0;
+    padding-left: 0px;
+}
+
+
 .topmenu ul li{
+    margin: 0;
     display: inline-block;
-    width: 14.28%;
+    width: 14.285%;
     font-size: 14.4px;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     text-align: center;
+    padding-left: 0px;
 }
 
 .topmenu ul li:hover{
@@ -150,8 +150,8 @@ footer{
         height: 100px;
     } 
     
-    nav ul li{
-        width: 16.5%;
+    .topmenu ul li{
+        width: 16.65%;
     }
     
    
@@ -166,7 +166,7 @@ footer{
 }
 
 @media screen and (max-width: 691px) {
-    nav{
+    .topmenu{
         display: none;
     }
     

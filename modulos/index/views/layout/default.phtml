@@ -23,16 +23,15 @@ for ($i = 1; $i <= $cant; $i++) {
 
                     <div class="row-fluid">
                         <div class="span2" id="programa">
-                            <img src=" '.$this->rutaImagenes.'desafio.jpg" alt="Desafio Africa"/>
-                            hola
+                            <img src=" '.$this->rutaImagenes.'desafio.jpg" alt="Desafio Africa"/ height="120px">
                         </div>
                         <div class="span2" id="canal">
                             <img src="'.$this->rutaImagenes.'caracol-tv.jpg" alt="Caracol TV"/>
                         </div>
                         <div class="span8" id="info">
-                            <h1>';
+                            <h3>';
                                 $HTML.= $programa['titulo'] . '
-                            </h1>
+                            </h3>
                             <p> '
                                 . $programa['info'] . '
                              </p>
@@ -46,3 +45,4 @@ echo $HTML;
 
 <div class="espFooter">
 </div>
+<img src="" alt="" height>
