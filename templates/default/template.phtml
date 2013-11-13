@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -8,6 +8,8 @@
         <link rel="stylesheet" href="/templates/default/css/estilos.css">
         <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script type="text/javascript" src="/templates/default/default.js"></script>
+
+        <link rel="stylesheet" href="../../assets/css/bootstrap.css">
       
 
         
@@ -16,7 +18,7 @@
     <body>
 
 
-        <section id="contenedor">
+        <div class="container-fluid">
             <!--Cabecera-->
             <header>
                 <img id="logo" src="<? echo $this->rutaImagenes ?>logo.png" width="130px">
@@ -27,26 +29,28 @@
             </header>
 
 
+            <!-- contenido -->
+            
+                <section id="webs">
 
-            <!--contenido-->
-            <section id="webs">
+                    <?php
+                    require $this->menuHTML;
+                    ?>
 
-                <?php
-                require $this->menuHTML;
-                ?>
+                    <?php
+                    require $this->contenidoURL;
+                    ?>
 
-                <?php
-                require $this->contenidoURL;
-                ?>
-
-            </section>
+                </section>
+            </div>
 
             <footer>
                 <br>copyright&COPY Iteraxis.co 2013
                 <br>Todos los derechos reservados
 
             </footer>
-        </section>
+
+        <script type="text/javascript" src="../../assets/js/bootstrap.js"></script>
 
     </body>
 </html>
