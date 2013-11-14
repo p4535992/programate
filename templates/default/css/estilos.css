@@ -116,7 +116,7 @@ nav li:last-child a{
     background-image: url(../img/fondo.png);
     background-repeat: repeat;
     border : 2px solid black;
-   
+
 }
 
 #daypicker{
@@ -131,12 +131,63 @@ footer{
     text-align: center;
     color: white;
 }
+#menucabecera{
+    margin-left:0px;
+    text-align: center;
+}
+#calendario{
+    margin:20px;
+}
+.channels{
+    padding: 0;
+    background: rgba(0,0,0,.5);
+    font-size: 0;
+}
+.canales  {
+    display: inline-block;               
+    font-size: 14.4px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    text-align: center;
+    width: 8%;
+    padding:10px;
+}
 
+.hora{
+    display: inline-block;
+    width: 14%;
+    font-size: 14.4px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    text-align: center;
+}
+
+.prev {
+   
+   
+    text-align: center;
+    width: 3%;
+    display: block;
+    float: left;
+    min-height: 30px;
+    -moz-box-sizing: border-box;
+    
+}
+
+#span{
+    margin-left: 2px;
+}
+
+.menucabecera ul li:hover{
+    background:rgba(0,0,0,.3);
+}
 
 
 
 @media screen and (max-width: 825px) {
-    
+
 
     #logo{
         position: absolute; 
@@ -152,12 +203,12 @@ footer{
         width: 100px;
         height: 100px;
     } 
-    
+
     .topmenu ul li{
         width: 16.65%;
     }
-    
-   
+
+
 }
 
 
@@ -172,7 +223,7 @@ footer{
     .topmenu{
         display: none;
     }
-    
+
     #menu2{
         display: block;
     }

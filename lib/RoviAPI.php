@@ -81,7 +81,7 @@ class RoviAPI {
         return $respuesta;
     }
     
-    static function darCalendario($servicioId, $lenguaje="es-CO", $duracion=60 ){
+    static function darCalendario($servicioId, $lenguaje="es-CO", $duracion=180 ){
        
         $url ="http://api.rovicorp.com/TVlistings/v9/listings/gridschedule/$servicioId/info?locale=$lenguaje&duration=$duracion&includechannelimages=false&format=json&apikey=".RAPITVLISTINGS;
         $respuesta = json_decode(file_get_contents($url), true);
