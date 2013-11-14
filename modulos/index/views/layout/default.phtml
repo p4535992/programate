@@ -1,5 +1,5 @@
 <style type="text/css">
-    #programa{
+    #tv{
         color: black;
         border: 1px solid white;
         background: #ccc;
@@ -19,14 +19,14 @@ $HTML = "";
 for ($i = 1; $i <= $cant; $i++) {
     $programa = $this->parametros['programa' . $i];
     $HTML.= '<div class="row-fluid">
-                <div class="span10 offset1" id="programa">
+                <div class="span10 offset1" id="tv">
 
                     <div class="row-fluid">
                         <div class="span2" id="programa">
-                            <img src=" '.$this->rutaImagenes.'desafio.jpg" alt="Desafio Africa"/ height="120px">
+                            <img src=" '.$this->rutaImagenes.'desafio.jpg" alt="Desafio Africa"/ height="120px" width="130px">
                         </div>
                         <div class="span2" id="canal">
-                            <img src="'.$this->rutaImagenes.'caracol-tv.jpg" alt="Caracol TV"/>
+                            <img src="'.$this->rutaImagenes.'caracol-tv.jpg" alt="Caracol TV"/ height="120px" width="130px">
                         </div>
                         <div class="span8" id="info">
                             <h3>';
