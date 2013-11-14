@@ -24,14 +24,14 @@ class GridViewController extends ViewController {
     }
 
     private function getHeaderGrid($inicio) {
-        $headergrid = '<div><div id="menucabecera" class="row">                
-                    <div id="span" class="span2">Canales</div>
-                    <div class="prev">  <   </div>';
+        $headergrid = '<div><div id="menucabecera" class="row-fluid">                
+                    <div id="span" class="span1">Canales</div>
+                   ';
         for ($index = $inicio; $index < ($inicio + 3); $index++) {
             $headergrid.='<div id="span" class="span2">' . ($index % 24) . ":00</div>";
             $headergrid.='<div id="span" class="span2">' . ($index % 24) . ":30</div>";
         }
-        $headergrid.='<div id="span" class="prev"> > </div> </nav> </div>';
+        $headergrid.=' </nav> </div>';
         return $headergrid;
     }
 
@@ -40,14 +40,15 @@ class GridViewController extends ViewController {
      * @param type $horarioJson
      */
     private function crearHorarios($horarioJson) {
-        $html = '<div class="row">';
+        $html = '<div class="row-fluid" style="margin-left:0px;">';
         foreach ($horarioJson as $key => $canal) {
-            $html.='<div id="calendario" class="span12"><div id="span" class="span2">' . $canal['SourceLongName'] . '</div><ul>';
+            $html.='<div class="row-fluid" style="margin-left:0px;">';
+            $html.='<div id="span" class="span2">' . $canal['SourceLongName'] . '</div>';
             $programas = $canal['Airings'];
             foreach ($programas as $key => $value) {
                 $html.=$this->getPrograma($value["Duration"], $value['Title']);
             }
-            $html.="</ul></div>";
+             $html.='</div>';
         }
         $html.="</div>";
         return $html;

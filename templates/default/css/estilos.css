@@ -178,6 +178,7 @@ footer{
 
 #span{
     margin-left: 2px;
+    border-style: dotted;
 }
 
 .menucabecera ul li:hover{
