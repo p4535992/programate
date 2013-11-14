@@ -1,3 +1,11 @@
+<style type="text/css">
+    
+</style>
+
+
+
+
+
 <?
 $peliculas = ($this->parametros['peliculas']);
 //var_dump($peliculas);
@@ -6,14 +14,14 @@ $HTML = "";
 foreach ($peliculas as $key => $value) {
     $k = $value->getData();
     $HTML.='<article>
-    <h2>';
-    $HTML.= $k['titulo'] .
-            '</h2>';
-    $HTML.='<img src="';
-    $HTML.= $k['imagen'];
-    $HTML.= 'height="150" width="150">';
-    $HTML.='<h3>' . $k['categoria'] . '</h3>';
-    $HTML.="</article>";
+                <h2>'
+                    .$k['titulo'].
+                '</h2>
+                <img src="'.$k['imagen'].'height="150" width="150">'
+                '<h4>' 
+                    .$k['categoria']. 
+                '</h4>
+            </article>';
 
     echo $HTML;
     $HTML = "";
