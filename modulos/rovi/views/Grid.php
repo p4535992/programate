@@ -27,21 +27,20 @@ class GridViewController extends ViewController {
         $headergrid = '<div>
 
             
-            <nav class="menucabecera">
-                <ul >
-                    <li class="canales"><div>Canales</div></li>
-                    <li class="prev"><                 </li>
+            <div id="menucabecera" class="row">
+                
+                    <div class="span2">Canales</div>
+                    <div class="prev"> <   </div>
                    ';
         for ($index = $inicio; $index < ($inicio + 3); $index++) {
 
-            $headergrid.='<li  class="hora">' . ($index % 24) . ":00</li>";
-            $headergrid.='<li  class="hora">' . ($index % 24) . ":30</li>";
+            $headergrid.='<div  class="span2">' . ($index % 24) . ":00</div>";
+            $headergrid.='<div  class="span2">' . ($index % 24) . ":30</div>";
         }
 
-        $headergrid.='<li class="prev">
+        $headergrid.='<div class="prev">
                                         >
-                                      </li>
-                                      </ul>
+                                      </siv>
             </nav>
         </div>';
         return $headergrid.=$this->getCSS();
@@ -52,34 +51,35 @@ class GridViewController extends ViewController {
      * @param type $horarioJson
      */
     private function crearHorarios($horarioJson) {
-        $html = '<div> <ul class="channels">';
+        $html = '<div class="row"> ';
         foreach ($horarioJson as $key => $canal) {
 
-
-            $html.='<li class="canales">'.$canal['SourceLongName'].'
-                    
-                    </li>                    
-                    <li class="hora">6:00</li>
-                    <li class="hora">6:30</li>
-                    <li class="hora">7:00</li>                    
-                    <li class="hora">7:30</li>
-                    <li class="hora">8:00</li>
-                    <li class="hora">8:30</li>
-                    ';
+            $html.= '<div id="calendario" class="row">';
+            $html.='<div class="span2">'.$canal['SourceLongName'].
+                    '
+                    </div>                    
+                    <div class="span2">6:00</div>
+                    <div class="span2">6:30</div>
+                    <div class="span2">7:00</div>                    
+                    <div class="span2">7:30</div>
+                    <div class="span2">8:00</div>
+                    <div class="span2">8:30</div>
+                    </div>';
+            $programas = $canal['Airings'];
         }
-        $html.="</ul></div>";
+        $html.="</div>";
         return $html;
     }
 
     public function getCSS() {
         return "
             <style>
-           .menucabecera ul{
-                padding: 0;
-                background: rgba(0,0,0,.5);
-                font-size: 0;
+           #menucabecera{
+           margin-left:0px;
+           }
+            #calendario{
+            margin:20px;
             }
-            
             .channels{
                 padding: 0;
                 background: rgba(0,0,0,.5);
@@ -92,12 +92,13 @@ class GridViewController extends ViewController {
                 -moz-box-sizing: border-box;
                 -webkit-box-sizing: border-box;
                 text-align: center;
-                 width: 8%;
+                width: 8%;
+                padding:10px;
             }
 
             .hora{
                 display: inline-block;
-                width: 14.28%;
+                width: 14%;
                 font-size: 14.4px;
                 box-sizing: border-box;
                 -moz-box-sizing: border-box;

@@ -119,6 +119,9 @@ nav li:last-child a{
    
 }
 
+#daypicker{
+    margin-left: auto;
+}
 
 .espFooter{
     height: 25px;
