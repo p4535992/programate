@@ -1,10 +1,22 @@
 <style type="text/css">
-    
+    article{
+        width: 150px;
+        padding: 10px;
+        border: 1px solid white;
+        display: inline-block;
+        background: #ccc;
+    }
+
+    #sugerencia{
+        background: gray;
+    }
+
 </style>
 
 
 
-
+<div class="row-fluid">
+     <div class="span10 offset1" id="sugerencia">
 
 <?
 $peliculas = ($this->parametros['peliculas']);
@@ -27,6 +39,9 @@ foreach ($peliculas as $key => $value) {
     $HTML = "";
 }
 ?>
+
+    </div>
+</div>
 
 <div class="espFooter">
 </div>
