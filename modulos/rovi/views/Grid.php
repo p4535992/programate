@@ -63,6 +63,8 @@ class GridViewController extends ViewController {
                 return '<div id="span" class="span2">' . $titulo . '</div>';
             case 120:
                 return '<div id="span" class="span2">' . $titulo . '</div>';
+            default :
+                return '<div id="span" class="span4">' . $titulo . '</div>';
         }
     }
 
