@@ -13,14 +13,17 @@
 
 class GridViewController extends ViewController {
 
+    private $tiempoActual;
+
     /**
      * 
      * @param type $inicio, Horario de inicio del Horario
      */
     public function getHTML($inicio = 6, $horariojson) {
         //se crea el header.
+
         $horariosServicio = $this->crearHorarios($horariojson);
-        return ($this->getHeaderGrid($inicio) . $horariosServicio);
+        return ($this->getHeaderGrid(date("H")) . $horariosServicio);
     }
 
     private function getHeaderGrid($inicio) {
@@ -43,33 +46,34 @@ class GridViewController extends ViewController {
         $html = '<div class="row-fluid" style="margin-left:0px;">';
         foreach ($horarioJson as $key => $canal) {
             $html.='<div class="row-fluid" style="margin-left:0px;">';
-            $html.='<div id="span" class="span2">' . $canal['SourceLongName'] . '</div>';
+            $html.='<div id="span" class="span1">' . $canal['SourceLongName'] . '</div>';
             $programas = $canal['Airings'];
             foreach ($programas as $key => $value) {
+                if ($this->tiempoActual >= 180) {
+                    break;
+                }
                 $html.=$this->getPrograma($value["Duration"], $value['Title']);
             }
-             $html.='</div>';
+            $this->tiempoActual = 0;
+            $html.='</div>';
         }
         $html.="</div>";
         return $html;
     }
 
     private function getPrograma($duracion, $titulo) {
-        switch ($duracion) {
-            case 30:
-                return '<div id="span" class="span2">' . $titulo . '</div>';
-            case 60:
-                return '<div id="span" class="span2">' . $titulo . '</div>';
-            case 90:
-                return '<div id="span" class="span2">' . $titulo . '</div>';
-            case 120:
-                return '<div id="span" class="span2">' . $titulo . '</div>';
-            default :
-                return '<div id="span" class="span4">' . $titulo . '</div>';
+        if ($duracion > 180) {
+            $duracion = 180;
         }
+        if (($this->tiempoActual + $duracion ) > 180) {
+            $duracion+=$this->tiempoActual;
+            $duracion-=180;
+        }
+        $this->tiempoActual+=$duracion;
+        $tamanoNormal = 14.8936;
+        $tamanoNuevoDiv = ($duracion * $tamanoNormal) / 30;
+        return '<div id="span" class="span1"' . 'style="width:' . $tamanoNuevoDiv . '%;">' . $titulo . '</div>';
     }
-
-   
 
 }
 ?>
