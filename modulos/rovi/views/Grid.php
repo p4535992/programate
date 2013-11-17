@@ -1,15 +1,6 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of Grid
- *
- * @author Andres
- */include_once './lib/ViewController.php';
+include_once './lib/ViewController.php';
 
 class GridViewController extends ViewController {
 
@@ -27,14 +18,24 @@ class GridViewController extends ViewController {
     }
 
     private function getHeaderGrid($inicio) {
-        $headergrid = '<div><div id="menucabecera" class="row-fluid">                
-                    <div id="span" class="span1">Canales</div>
-                   ';
+        $headergrid = '<div>';
+        $headergrid.= '<thead>'
+                            .'<tr>'
+                                .'<th>';
+
+        $headergrid.= '<div id="menucabecera" class="row-fluid">                
+                    <div id="span" class="span1">Canales</div> ';
+
         for ($index = $inicio; $index < ($inicio + 3); $index++) {
+
             $headergrid.='<div id="span" class="span2">' . ($index % 24) . ":00</div>";
             $headergrid.='<div id="span" class="span2">' . ($index % 24) . ":30</div>";
         }
-        $headergrid.=' </nav> </div>';
+        $headergrid.=' </nav> </div>'
+
+                                .'</th>'
+                            . '</tr>'
+                        . '</thead>';
         return $headergrid;
     }
 
@@ -43,7 +44,11 @@ class GridViewController extends ViewController {
      * @param type $horarioJson
      */
     private function crearHorarios($horarioJson) {
-        $html = '<div class="row-fluid" style="margin-left:0px;">';
+        $html = '<tbody>'
+                . '<tr>'
+                . '<td>';
+
+        $html.= '<div class="row-fluid" style="margin-left:0px;">';
         foreach ($horarioJson as $key => $canal) {
             $html.='<div class="row-fluid" style="margin-left:0px;">';
             $html.='<div id="span" class="span1">' . $canal['SourceLongName'] . '</div>';
@@ -58,6 +63,9 @@ class GridViewController extends ViewController {
             $html.='</div>';
         }
         $html.="</div>";
+        $html.='</td>'
+                . '</tr>'
+                . '</tbody>';
         return $html;
     }
 
