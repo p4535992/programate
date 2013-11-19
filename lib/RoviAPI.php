@@ -80,20 +80,27 @@ class RoviAPI {
      * @param type $formato
      */
     function getServices($codigopostal = 0, $codigoPais = "CO", $lenguaje = "es-CO", $msoid = null, $formato = "json") {
-
-        //$sig = md5();
         $url = "http://api.rovicorp.com/TVlistings/v9/listings/services/postalcode/$codigopostal/info?locale=$lenguaje&countrycode=$codigoPais&format=$formato&apikey=" . RAPITVLISTINGS;
         $respuesta = json_decode(file_get_contents($url), true);
         return $respuesta;
     }
 
-    static function darCalendario($servicioId, $lenguaje = "es-CO", $duracion = 180) {
-        $horaActual = date("H");
-        $horaActual = ($horaActual + 5) % 24;
-
+    static function darCalendario($servicioId, $lenguaje = "es-CO", $duracion = 180, $horaActual = null, $dia) {
         $hoy = date("Y-m-d\T");
+        if ($horaActual == null) {
+            $horaActual = (date("H") + 5) % 24;
+            if ((date("H") + 5) >= 24) {
+                $hoy = date("Y-m-d\T",mktime(0, 0, 0, date("m"), date("d")+1, date("Y")));
+            }
+        } else {
+             if (($horaActual + 5) >= 24) {
+                $hoy = date("Y-m-d\T",mktime(0, 0, 0, date("m") , date("d")+1, date("Y")));
+            }
+            $horaActual = ($horaActual + 5) % 24;
+        }
+
         if ($horaActual < 10) {
-                $hoy.="0$horaActual:00:00Z";
+            $hoy.="0$horaActual:00:00Z";
         } else {
             $hoy.="$horaActual:00:00Z";
         }

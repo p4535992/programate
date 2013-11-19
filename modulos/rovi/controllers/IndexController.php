@@ -18,11 +18,17 @@ class IndexController extends Controller {
      * @param type $param
      */
     public function index(){
-        $horario = $this->cargarservicio();
-        
+             
         $menudias = $this->getDayPicker();
         $arraydata = $this->darProveedoresServicio();
-        $GRID = $this->darGRID($horario);
+        $horario = $this->cargarHorarioServicio();  
+         if (isset($_GET['horaActual'])&&$_GET['horaActual'] != NULL) {
+            $horaActual = $_GET['horaActual'] ;  
+        }else{
+            $horaActual = date('H');
+        }
+        $GRID = $this->darGRID($horario, $horaActual);
+
         $parametros = array("Servicios" =>$arraydata, "horario"=>$horario, "menudias"=>$menudias,"grid"=>$GRID);
         include_once './lib/ViewController.php';
         $pathtoVista = "./modulos/rovi/views/index.php";
@@ -48,13 +54,25 @@ class IndexController extends Controller {
 /**
  * 
  */
-    private function cargarservicio() {
+    private function cargarHorarioServicio() {
         if (isset($_POST['servicio'])&&$_POST['servicio'] != NULL) {
             $idServicio = $_POST['servicio'];
         } else {
             $idServicio = "68337";
         }     
-        $arreglo = RoviAPI::darCalendario($idServicio);
+        if (isset($_GET['horaActual'])&&$_GET['horaActual'] != NULL) {
+            $horaActual = $_GET['horaActual'] ;  
+        }else{
+            $horaActual = null;
+        }
+        
+        if (isset($_GET['fecha'])&&$_GET['fecha'] != NULL) {
+            $dia  = $_GET['fecha'] ;  
+        }else{
+            $dia = null;
+        }
+        
+        $arreglo = RoviAPI::darCalendario($idServicio, "es_CO", 180, $horaActual, $dia );
         //se obtiene la info relevante
         $horario = $arreglo['GridScheduleResult']['GridChannels'];
         return $horario ;
@@ -74,11 +92,10 @@ class IndexController extends Controller {
      * @param type $horario
      * @return type
      */
-    private function darGRID($horario) {
+    private function darGRID($horario, $horaInicial) {
         $pathtoVista = "./modulos/rovi/views/Grid.php";
-        $dayPickerView = parent::cargarVista($pathtoVista, 'Grid', null);
-        $horaActual = 6;
-        return $dayPickerView->getHTML($horaActual,$horario);
+        $dayPickerView = parent::cargarVista($pathtoVista, 'Grid', null);        
+        return $dayPickerView->getHTML($horaInicial,$horario);
     }
 
 }

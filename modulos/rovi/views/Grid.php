@@ -10,11 +10,10 @@ class GridViewController extends ViewController {
      * 
      * @param type $inicio, Horario de inicio del Horario
      */
-    public function getHTML($inicio = 6, $horariojson) {
-        //se crea el header.
-
+    public function getHTML($inicio = 6, $horariojson) {  
+        //se crea el header.      
         $horariosServicio = $this->crearHorarios($horariojson);
-        return ($this->getHeaderGrid(date("H")) . $horariosServicio);
+        return ($this->getHeaderGrid($inicio) . $horariosServicio);
     }
 
     private function getHeaderGrid($inicio) {
