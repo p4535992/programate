@@ -1,4 +1,14 @@
+
+
+
+
+
+
+
+
+
 <?php
+
 
 include_once './lib/ViewController.php';
 
@@ -43,14 +53,19 @@ class GridViewController extends ViewController {
      * @param type $horarioJson
      */
     private function crearHorarios($horarioJson) {
-        $html = '<tbody>'
-                . '<tr>'
-                . '<td>';
+        $html = '<tbody>';
+                
 
         $html.= '<div class="row-fluid" style="margin-left:0px;">';
         foreach ($horarioJson as $key => $canal) {
+
+
+            $html.= '<tr>'
+                . '<td>';
+
+
             $html.='<div class="row-fluid" style="margin-left:0px;">';
-            $html.='<div id="span" class="span1">' . $canal['SourceLongName'] . '</div>';
+            $html.='<div id="span" class="span1"><p>' . $canal['SourceLongName'] . '</p></div>';
             $programas = $canal['Airings'];
             foreach ($programas as $key => $value) {
                 if ($this->tiempoActual >= 180) {
@@ -60,11 +75,14 @@ class GridViewController extends ViewController {
             }
             $this->tiempoActual = 0;
             $html.='</div>';
+
+
+            $html.='</td></tr>';
         }
+        $html.='</tbody>';
+
         $html.="</div>";
-        $html.='</td>'
-                . '</tr>'
-                . '</tbody>';
+        
         return $html;
     }
 

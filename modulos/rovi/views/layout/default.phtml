@@ -1,4 +1,4 @@
-<style>
+<style type="text/css">
 
     .halign{
         
@@ -13,6 +13,15 @@
 
     .horario{
         padding: 10px;
+        background:rgba(255,0,0,.5); 
+    }
+
+    .horario table{
+        background: ccc;
+    }
+
+    #hola{
+        background: #ccc;
     }
 
 </style>
@@ -25,6 +34,7 @@
 <!-- Latest compiled and minified JavaScript 
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>-->
 <div class="horario" >
+    <img src="horario.png" alt="">
     <div id="box1" class="halign"><h2>Horario de Television</h2></div>
     <div id="box2" class="halign">
         <form id="miform "method="POST" action="/rovi/index/index">
@@ -52,11 +62,14 @@
             ?>        
         <button type="button" class="btn btn-default" >></button>
     </div>
-    <table class="table table-striped table-bordered">
-        <?
-        echo $this->parametros['grid'];
-        ?>
-    </table>  
+    <div id="hola">
+        <table class="table table-striped table-bordered">
+            <?
+            echo $this->parametros['grid'];
+            ?>
+        </table> 
+    </div>
+     
 
 </div>
 <div>
