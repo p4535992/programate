@@ -24,6 +24,10 @@
         background: #ccc;
     }
 
+    #box1{
+        margin: 15px;
+    }
+
 </style>
 <!-- Latest compiled and minified CSS 
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
@@ -34,8 +38,8 @@
 <!-- Latest compiled and minified JavaScript 
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>-->
 <div class="horario" >
-    <img src="horario.png" alt="">
-    <div id="box1" class="halign"><h2>Horario de Television</h2></div>
+    <img id="box1"src="<? echo $this->rutaImagenes ?>horario.png" alt="">
+    
     <div id="box2" class="halign">
         <form id="miform "method="POST" action="/rovi/index/index">
 
