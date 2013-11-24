@@ -50,7 +50,7 @@
                         <?
                         $arregloServicio = $this->parametros['Servicios'];
                         foreach ($arregloServicio as $key => $value) {
-                            echo '<option value="' . $value[0] . '">' . $value[1] . '</option>';
+                            echo '<option value="' . $value["idProveedor_Servicio"] . '">' . $value['Nombre'] . '</option>';
                         }
                         ?>
                 </select>
