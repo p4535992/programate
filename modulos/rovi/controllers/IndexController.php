@@ -39,7 +39,7 @@ class IndexController extends Controller {
    * 
    * @return type
    */          
-   private function darProveedoresServicio() {
+  public function darProveedoresServicio() {
         $roviAPI = new RoviAPI();
         $proveedores = $roviAPI->getServices(0, "CO", "es-CO");
         //se obtiene solo la informacion relevante.
