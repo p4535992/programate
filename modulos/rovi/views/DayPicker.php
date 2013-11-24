@@ -14,9 +14,9 @@ class DayPickerViewController extends ViewController {
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                            <li> <a href="#"> Estandar </a> </li>
-                            <li> <a href="#"> Mis Favoritos </a> </li>
-                            <li> <a href="#"> Mis Programas </a></li>
+                             <li> <a href="/rovi/index/index"> Estandar </a> </li>
+                            <li> <a href="/rovi/favoritos/index"> Mis Favoritos </a> </li>
+                            <li> <a href="/rovi/programate/index"> Mis Programas </a></li>
                             </ul>
                      </div>
                      <div class="btn-group">
