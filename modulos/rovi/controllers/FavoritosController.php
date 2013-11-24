@@ -28,21 +28,41 @@ class FavoritosController extends Controller  {
      * Obtiene los canales favoritos del usuario actual
      */
     private function getCanalesFavoritos(){
-        if($_SESSION['autenticado']){
-            $username = $_SESSION['username'];   
-            $QUERY= "SELECT `canal`.`NombreCompleto` FROM canal, favoritos, usuario WHERE `canal`.`idCanal` = `Favoritos`.`Canal_idCanal`
-            and  `Favoritos`.`Usuario_idUsuario` = `Usuario`.`idUsuario` and `Usuario`.`username`= '".$username."'";
+        if (parent::isLoggedIn()) {
+            $username = $_SESSION['username'];
+                        $QUERY = "SELECT `canal`.`NombreCompleto` FROM canal, favoritos, usuario WHERE `canal`.`idCanal` = `Favoritos`.`Canal_idCanal`
+            and  `Favoritos`.`Usuario_idUsuario` = `Usuario`.`idUsuario` and `Usuario`.`username`= '" . $username . "'";
             $respuesta = Aplication::selectQuery($QUERY);
             return $respuesta->fetch_assoc();
+        } else {
+            return NULL;
         }
     }
     
-    public function agregarCanalFavorito($idCanal) {
-        
+    public function agregarCanalFavorito($idCanal=null) {
+        //se verfica que esta autenticaso
+        $idCanal = $_REQUEST["idcanal"];
+        if(parent::isLoggedIn()){
+              $username = $_SESSION['username'];
+              
+              $id = parent::getUserId($username);
+              var_dump($username);
+              Aplication::insert("Favoritos", array("Usuario_idUsuario"=>$id, "Canal_idCanal"=>$idCanal));
+        }else{
+            //renderizar la pagina correspondiente
+        }
     }
     
-    public function eliminarCanalFavorito($idCanal){
-        
+    public function eliminarCanalFavorito($idCanal=null){
+        $idCanal = $_REQUEST["idcanal"];
+        if(parent::isLoggedIn()){
+              $username = $_SESSION['username'];              
+              $id = parent::getUserId($username);
+             // var_dump($username);
+              Aplication::delete("Favoritos", "Usuario_idUsuario = $id and Canal_idCanal = $idCanal");
+        }else{
+            //renderizar la pagina correspondiente
+        }
     }
     
     

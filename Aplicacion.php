@@ -204,12 +204,12 @@ class Aplication {
      * @param type $usuario
      * @return boolean
      */
-    public static function existeUsuario($usuario) {
-        $fila = Aplication::select('username', 'usuario', "username='" . $usuario['username'] . "'");
+    public static function existeUsuario($username) {
+        $fila = Aplication::select('idUsuario', 'usuario', "username='" . $username . "'");
         if ($fila == null && $fila['username'] == null) {
-            return false;
+            return null;
         } else {
-            return true;
+            return $fila['idUsuario'];
         }
     }
 

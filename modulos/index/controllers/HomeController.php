@@ -50,8 +50,6 @@ class HomeController extends Controller {
         parent::renderizarPagina($view->getHTML('programar'), $view->getParametros());
     }
 
-  
-
     public function cine() {
         $pathtoVista = "./modulos/$this->nombre/views/index.php";
         $view = parent::cargarVista($pathtoVista, 'index', null);

@@ -108,6 +108,13 @@ class RoviAPI {
         $respuesta = json_decode(file_get_contents($url), true);
         return $respuesta;
     }
+    
+    
+    public static function darCanalesServicio($idServicio) {       
+        $url = "http://api.rovicorp.com/TVlistings/v9/listings/servicedetails/serviceid/$idServicio/info?locale=es-CO&includechannelimages=true&format=json&apikey=" . RAPITVLISTINGS;
+        $respuesta = json_decode(file_get_contents($url), true);
+        return $respuesta;    
+    }
 
 }
 

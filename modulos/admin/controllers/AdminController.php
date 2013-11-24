@@ -25,23 +25,22 @@ class AdminController extends Controller {
         $array = $roviIndexController->darProveedoresServicio();        
         foreach ($array as $key => $value) {
             $value['Pais_idPais'] = "1";//id  de colombia
-            Aplication::insert("Proveedor_Servicio", $value);             
+            Aplication::insert("Proveedor_Servicio", $value);
+            $this->guardarCanalesProveedor($value['idProveedor_Servicio']);
         }        
     }
     
     public function guardarCanalesProveedor($idProveedor){
-       $idProveedor = $_REQUEST['idproveedor'];
+       //$idProveedor = $_REQUEST['idproveedor'];
        $json =  RoviAPI::darCanalesServicio($idProveedor);
        $json = $json['ServiceDetailsResult']['ChannelLineup']['Channels'];
-       //var_dump($json);//se obtienen los canales
-       
+       //var_dump($json);//se obtienen los canales       
        foreach ($json as $key => $channel) {
            $canal['idCanal'] = $channel['SourceId'];
            $canal['NombreCompleto'] = $channel['FullName'];
            $canal['Abreviatura'] =  $channel['CallLetters'];
            $canal['SourceId'] =  $channel['SourceId'];
-          // $canal['Proveedor_Servicio_idProveedor_Servicio'] = $idProveedor;
-           
+          // $canal['Proveedor_Servicio_idProveedor_Servicio'] = $idProveedor;           
            Aplication::insert("canal", $canal);     
            Aplication::insert("Proveedor_Servicio_has_Canal", array("Proveedor_Servicio_idProveedor_Servicio"=>$idProveedor ,  "Canal_idCanal"=>$channel['SourceId']));
        }

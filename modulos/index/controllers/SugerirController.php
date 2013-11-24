@@ -31,10 +31,8 @@ class SugerirController extends Controller {
             $peliculas = $this->getPeliculas();
             $programas = $this->getProgramasTelevision();
             $infoSparql = $this->getInfoPeliculasRelacionadas($peliculas);
-
             $pathtoVista = "./modulos/$this->nombre/views/index.php";
-            $view = parent::cargarVista($pathtoVista, 'index', array("peliculas" => $peliculas, 'programas' => $programas, 'sugerencias' =>$infoSparql));
-            
+            $view = parent::cargarVista($pathtoVista, 'index', array("peliculas" => $peliculas, 'programas' => $programas, 'sugerencias' =>$infoSparql));            
             parent::renderizarPagina($view->getHTML('sugerir'), $view->getParametros());
         } else {
             header("Location: /index/home/index");

@@ -16,6 +16,6 @@
   define("RSSAUTOCOMPLETE","ESKxYt9B4G");
   define("RMETADATASEARCH", "yjznda6guw9g2t8hzbc4dhjr");
   define("RSSMETADATASEARCH", "cMPJFgvxwM");
-  define("RDFAPI_INCLUDE_DIR", "./lib/rdfapi-php/api/"); 
+  define("RDFAPI_INCLUDE_DIR", "./lib/api/"); 
   
 ?>

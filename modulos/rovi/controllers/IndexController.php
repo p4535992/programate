@@ -46,7 +46,7 @@ class IndexController extends Controller {
         $servicios = $proveedores['ServicesResult']["Services"]['Service'];
         $arraydata = array();
         foreach ($servicios as $key => $value) {
-            $arraydata[] = array($value['ServiceId'], $value['Name']);
+            $arraydata[] = array("idProveedor_Servicio"=>$value['ServiceId'],"Nombre"=> $value['Name'], "Idioma"=>'es_CO', "MSO"=>$value['MSO'], "MSO_Id"=>$value['MSOID']);
         }
 
         return $arraydata;

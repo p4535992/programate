@@ -1,4 +1,54 @@
-<?
 
-echo "estos son mis favoritos";
-var_dump($this->parametros['canales']);
+<style type="text/css">
+    #tv{
+        color: black;
+        border: 1px solid white;
+        background: #ccc;
+        box-sizing: border-box;
+        -webkit-transition: .2s;
+        -moz-transition: .2s;
+        transition: .2s;
+        margin-top:30px;
+        padding: 5px;
+    }
+</style>             
+
+
+<?php
+$HTML = "";
+$canales = $this->parametros['canales'];
+if ($canales != null) {
+    foreach ($canales as $key => $canal) {
+        $HTML.= '<div class="row-fluid">
+                <div class="span10 offset1" id="tv">
+
+                    <div class="row-fluid">
+                        <div class="span2" id="programa">
+                            <img src=" ' . $this->rutaImagenes . 'desafio.jpg" alt="Desafio Africa"/ height="120px" width="130px">
+                        </div>
+                        <div class="span2" id="canal">
+                            <img src="' . $this->rutaImagenes . 'caracol-tv.jpg" alt="Caracol TV"/ height="120px" width="130px">
+                        </div>
+                        <div class="span8" id="info">
+                            <h3>';
+        $HTML.= $canal . '
+                            </h3>
+                            <p> 
+                             </p>
+                        </div>
+                    </div>
+                </div>
+            </div>';
+    }
+}else{
+    $HTML.="No tienes favoritos";
+}
+
+
+echo $HTML;
+?>
+
+<div class="espFooter">
+</div>
+<?
+//var_dump($this->parametros['canales']);

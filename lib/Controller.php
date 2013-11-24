@@ -60,8 +60,7 @@ class Controller {
             $loader->rederizarPagina();
             // return true;
         } else {
-            // error 404
-            // return false;
+                      // return false;
         }
     }
 
@@ -90,13 +89,24 @@ class Controller {
                 //ademas salgo de este script 
                 return true;
             }
-            else
-                return false;
-        }
-        else
             return false;
+        }
+        return false;
+    }
+    /**
+     * 
+     */
+    public function getUserId($username){ 
+               //si no existe, envio a la página de autentificacion 
+                //ademas salgo de este script
+                $idUsuario = Aplication::existeUsuario($username);
+               if($idUsuario!=null)
+               {
+                   return $idUsuario;             
+               }   
+            return null;
+        
     }
 
 }
 
-?>
