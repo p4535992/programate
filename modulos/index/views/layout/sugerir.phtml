@@ -63,13 +63,13 @@
         foreach ($sugerencias as $key => $value) {
             $k = $value->getData();
             $HTML.='<article>
-                <h2>'
+                <p class="titulo">'
                     . $k['titulo'] .
-                    '</h2>
+                    '</p>
                 <img src="' . $k['imagen'] . 'height="150" width="150">' .
-                    '<h4>'
+                    '<p>'
                     . $k['categoria'] .
-                    '</h4>
+                    '<p>
             </article>';
 
             echo $HTML;
