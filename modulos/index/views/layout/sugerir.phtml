@@ -19,47 +19,56 @@
 
 
 <div class="row-fluid">
-     <div class="span10 offset1" id="sugerencia">
+    <div class="span10 offset1" id="sugerencia">
 
-<?
-$peliculas = ($this->parametros['peliculas']);
+        <?
+        $peliculas = ($this->parametros['peliculas']);
 //var_dump($peliculas);
-$HTML = "";
+        $HTML = "";
 
-foreach ($peliculas as $key => $value) {
-    $k = $value->getData();
-    $HTML.='<article>
+        foreach ($peliculas as $key => $value) {
+            $k = $value->getData();
+            $HTML.='<article>
                 <h2>'
-                    .$k['titulo'].
-                '</h2>
-                <img src="'.$k['imagen'].'height="150" width="150">'.
-                '<h4>'
-                    .$k['categoria']. 
-                '</h4>
+                    . $k['titulo'] .
+                    '</h2>
+                <img src="' . $k['imagen'] . 'height="150" width="150">' .
+                    '<h4>'
+                    . $k['categoria'] .
+                    '</h4>
             </article>';
 
-    echo $HTML;
-    $HTML = "";
-}
-?>
+            echo $HTML;
+            $HTML = "";
+        }
+        ?>
 
     </div>
 </div>
 
 <div class="espFooter">
 </div>
-<?
-$sugerencias = $this->parametros['sugerencias'];
-foreach ($sugerencias as $key => $value) {
-    //var_dump($value);
-    echo '<br>';
-    if ($value['tag'] == "URI" || $value['tag'] == "LITERAL") {
-        echo $value['value'] . ":" . $value['value'] ;
-    }
-    /* foreach ($value as $indice => $valor) {
-      if($indice=="URI" || $indice=="LITERAL"){
-      echo $indice .":".$valor  ;
-      }
-      } */
-}
-?>
+<div class="row-fluid">
+    <div class="span10 offset1" id="sugerencia">
+        <?
+        $sugerencias = $this->parametros['sugerencias'];
+
+        foreach ($sugerencias as $key => $value) {
+            $k = $value->getData();
+            $HTML.='<article>
+                <h2>'
+                    . $k['titulo'] .
+                    '</h2>
+                <img src="' . $k['imagen'] . 'height="150" width="150">' .
+                    '<h4>'
+                    . $k['categoria'] .
+                    '</h4>
+            </article>';
+
+            echo $HTML;
+            $HTML = "";
+        }
+        ?>
+    </div>
+</div><div class="espFooter">
+</div>

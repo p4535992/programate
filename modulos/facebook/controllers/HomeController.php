@@ -25,7 +25,7 @@ class HomeController extends Controller {
     function confirmarIdentidad() {
         if (!empty($_GET['code'])) {
             $redirectURL = "http://anfho93.sytes.net/facebook/home/confirmarIdentidad";
-            $url = "Location: https://graph.facebook.com/oauth/access_token?client_id=" . APPID . "&redirect_uri=" . $redirectURL . "&client_secret=" . APPSECRET . "&code=" . $_GET['code'];
+            //$url = "Location: https://graph.facebook.com/oauth/access_token?client_id=" . APPID . "&redirect_uri=" . $redirectURL . "&client_secret=" . APPSECRET . "&code=" . $_GET['code'];
             $url = "https://graph.facebook.com/oauth/access_token?client_id=" . APPID . "&redirect_uri=" . $redirectURL . "&client_secret=" . APPSECRET . "&code=" . $_GET['code'];
             $accessToken = file_get_contents($url);
             @list($aT, $expiracion ) = explode("&", $accessToken, 2);
